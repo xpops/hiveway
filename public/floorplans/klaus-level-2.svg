@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1275 660" width="1275" height="660" role="img" aria-labelledby="map-title map-description">
+  <title id="map-title">Klaus Advanced Computing Building, Level 2</title>
+  <desc id="map-description">Schematic traced from the wall directory. Dashed connector markers show approximate locations.</desc>
+  <defs>
+    <path id="floor-outline" d="M33 387Q330 48 680 22Q967 -10 1235 122L1193 203 1233 221 1219 251 1188 235 1109 363 1054 336 1050 349 969 321 969 347 835 342 849 164 768 164 773 298 752 300 744 482 766 483 764 550 737 550 735 614 653 610 653 593 594 592 586 583 549 607 540 593 513 608 496 574 487 580 329 298Q245 346 168 449L154 441 136 464 103 435 99 439Z"/>
+    <path id="corridors" d="M127 432L183 352L253 276L332 215L409 164L500 123L596 93L680 75L747 67L818 65L878 66L866 143 M332 215L365 268L410 341 M747 67L747 160L747 248L683 253L614 267L547 285L480 310L410 341 M547 285L551 325L580 368L605 411 M410 341L444 409L482 476L516 540L539 580L598 550 M480 310L518 374L554 441L590 508L613 546L598 550 M598 550L663 529L710 529L722 570 M866 143L944 157L1020 177L1094 202L1173 233L1197 222 M866 143L864 213L857 283L856 319L905 330"/>
+    <g id="stair-marker">
+      <rect x="-11" y="-11" width="22" height="22" rx="4" fill="#fff" stroke="#727272" stroke-dasharray="2 2"/>
+      <path d="M-6 5H-2V1H2V-3H6V-6" fill="none" stroke="#292929" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g id="elevator-marker">
+      <rect x="-11" y="-11" width="22" height="22" rx="4" fill="#fff" stroke="#727272" stroke-dasharray="2 2"/>
+      <path d="M-3 5V-5m-3 3 3-3 3 3m3-3V5M0 2l3 3 3-3" fill="none" stroke="#292929" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <g id="exit-marker">
+      <rect x="-9" y="-9" width="18" height="18" rx="3" fill="#292929"/>
+      <path d="M-5 -5H-1V5H-5M-2 0H5M2 -3L5 0L2 3" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </defs>
+
+  <rect width="1275" height="660" fill="#fff"/>
+  <use xlink:href="#floor-outline" fill="#ededed" stroke="#272727" stroke-width="2.5" stroke-linejoin="round"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <use xlink:href="#corridors" stroke="#c7c7c7" stroke-width="17"/>
+    <use xlink:href="#corridors" stroke="#fff" stroke-width="14"/>
+  </g>
+  <path d="M609 319L722 301 720 445 640 461 624 432 631 427Z" fill="#fff" stroke="#272727" stroke-width="2"/>
+  <text x="672" y="387" fill="#555" font-family="Helvetica" font-size="14" text-anchor="middle">Atrium</text>
+
+  <g fill="#262626" font-family="Helvetica" font-size="25" font-weight="bold" text-anchor="middle">
+    <text x="530" y="157">2300s</text>
+    <text x="626" y="243">2200s</text>
+    <text x="676" y="502">2100s</text>
+    <text x="1010" y="224">2400s</text>
+  </g>
+  <g aria-label="Stair and elevator markers">
+    <use xlink:href="#stair-marker" x="135" y="444"><title>Stairs West</title></use>
+    <use xlink:href="#stair-marker" x="605" y="411"><title>Stairs Central</title></use>
+    <use xlink:href="#stair-marker" x="722" y="570"><title>Stairs South</title></use>
+    <use xlink:href="#stair-marker" x="1197" y="222"><title>Stairs Classroom East</title></use>
+    <use xlink:href="#stair-marker" x="905" y="330"><title>Stairs Classroom West</title></use>
+    <use xlink:href="#elevator-marker" x="514" y="326"><title>Elevator Blue</title></use>
+    <use xlink:href="#elevator-marker" x="672" y="586"><title>Elevator South</title></use>
+    <use xlink:href="#elevator-marker" x="919" y="286"><title>Elevator Classroom</title></use>
+  </g>
+
+  <g font-family="Helvetica">
+    <text x="850" y="418" fill="#262626" font-size="26" font-weight="bold">Klaus · Level 2</text>
+    <text x="850" y="445" fill="#555" font-size="14">Schematic indoor map</text>
+    <path d="M850 461H1190" stroke="#d8d8d8"/>
+    <use xlink:href="#stair-marker" x="861" y="485"/>
+    <text x="881" y="490" fill="#383838" font-size="14">Stairs</text>
+    <use xlink:href="#elevator-marker" x="970" y="485"/>
+    <text x="990" y="490" fill="#383838" font-size="14">Elevator</text>
+  </g>
+</svg>

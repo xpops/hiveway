@@ -4,8 +4,8 @@
   <defs>
     <path id="research-wing" d="M24 363C132 210 359 44 655 11L668 266 628 271 628 416 665 431 665 486 642 486 642 541 571 541 571 515 523 517 481 541 469 530 452 541 302 333 276 284 155 393 136 416 130 411 119 427Z"/>
     <path id="classroom-wing" d="M743 10C864 13 997 48 1090 91L1054 169 1077 178 1061 205 1037 196 969 318 916 299 914 306 841 286 841 307 722 307Z"/>
-    <path id="research-corridors" d="M57 385L92.5 339.5L136 294L174.25 260.0L223.75 218.0L268 185M268 185L316.5 154.5L364.75 128.25L418 104L472.0 85.0L527.5 71.0L583.75 60.75L645 54M645 54L647.67 108.67L650.0 166.5L653 219M268 185L298.33 228.33L320.0 263.5L347 309M347 309L406.0 282.0L474 254M474 254L535.0 236.5L589.5 225.0L653 219M474 254L482 286M347 309L376.5 359.0L409.8 413.0L445 473L478 524M478 524L535.0 492.0L602 473M602 473L602 532M57 385L53 388M645 54L657 53M482 286L513 325L545 368L575 414L615 453L602 473M615 453L664 453"/>
-    <path id="classroom-corridors" d="M754 135L813 142L865.0 151.5L930.25 169.25L977.5 187.0L1034 211M754 135L747 193L742.67 243.0L739 300"/>
+    <path id="research-corridors" d="M57 385L92.5 339.5L136 294L174.25 260.0L223.75 218.0L268 185M268 185L316.5 154.5L364.75 128.25L418 104L472.0 85.0L527.5 71.0L583.75 60.75L645 54M645 54L647.67 108.67L650.0 166.5L653 219M268 185L298.33 228.33L320.0 263.5L347 309M347 309L406.0 282.0L474 254M474 254L535.0 236.5L589.5 225.0L653 219M347 309L376.5 359.0L409.8 413.0L445 473L478 524M478 524L535.0 492.0L608.5 463.0M608.5 463.0L602 550M57 385L41 404M645 54L679 53M474 254L513 325L545 368L575 414L608.5 463.0M608.5 463.0L690 453"/>
+    <path id="classroom-corridors" d="M754 135L813 142L865.0 151.5L930.25 169.25L977.5 187.0L1058 221M754 135L747 193L742.67 243.0L737 328M754 135L711 135"/>
     <g id="stair-marker">
       <rect x="-11" y="-11" width="22" height="22" rx="4" fill="#fff" stroke="#727272" stroke-dasharray="2 2"/>
       <path d="M-6 5H-2V1H2V-3H6V-6" fill="none" stroke="#292929" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -40,6 +40,8 @@
   <path aria-label="Open atrium" d="M490 301L626 273V416L663 432V483H605L558 470 576 426Z" fill="#fff"/>
   <use xlink:href="#research-wing" fill="none" stroke="#272727" stroke-width="2.5" stroke-linejoin="round"/>
 
+  <path aria-label="Open exit corridors" d="M608.5 463.0L602 550M977.5 187.0L1058 221M742.67 243.0L737 328M57 385L41 404M645 54L679 53M608.5 463.0L690 453M754 135L711 135" fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round"/>
+
   <g fill="#262626" font-family="Helvetica" font-size="23" font-weight="bold" text-anchor="middle">
     <text x="476" y="140">1300s</text>
     <text x="507" y="206">1200s</text>
@@ -50,31 +52,23 @@
 
   <g aria-label="Approximate stair and elevator markers from the wall directory">
     <use xlink:href="#stair-marker" x="113" y="407"/>
-    <use xlink:href="#stair-marker" x="700" y="53"/>
     <use xlink:href="#stair-marker" x="565" y="444"/>
     <use xlink:href="#stair-marker" x="624" y="500"/>
     <use xlink:href="#stair-marker" x="775" y="294"/>
     <use xlink:href="#stair-marker" x="1045" y="180"/>
-    <use xlink:href="#elevator-marker" x="672" y="35"/>
     <use xlink:href="#elevator-marker" x="445" y="299"/>
     <use xlink:href="#elevator-marker" x="583" y="493"/>
     <use xlink:href="#elevator-marker" x="800" y="252"/>
   </g>
 
   <g aria-label="Exits">
-    <use xlink:href="#exit-marker" x="53" y="388"><title>1300s west exit</title></use>
-    <use xlink:href="#exit-marker" x="657" y="53"><title>1300s east exit</title></use>
-    <use xlink:href="#exit-marker" x="664" y="453"><title>Atrium east exit</title></use>
-    <use xlink:href="#exit-marker" x="602" y="532"><title>1100s south exit</title></use>
-    <use xlink:href="#exit-marker" x="754" y="135"><title>1400s bend exit</title></use>
-    <use xlink:href="#exit-marker" x="1034" y="211"><title>1400s east exit</title></use>
-    <use xlink:href="#exit-marker" x="739" y="300"><title>1400s southwest exit</title></use>
-  </g>
-
-  <g aria-label="1200s directory location">
-    <circle cx="482" cy="286" r="6" fill="#272727" stroke="#fff" stroke-width="2"/>
-    <path d="M491 286H502" fill="none" stroke="#777"/>
-    <text x="507" y="290" fill="#404040" font-family="Helvetica" font-size="11">Directory</text>
+    <use xlink:href="#exit-marker" x="41" y="404"><title>1300s west exit</title></use>
+    <use xlink:href="#exit-marker" x="679" y="53"><title>1300s east exit</title></use>
+    <use xlink:href="#exit-marker" x="690" y="453"><title>Atrium east exit</title></use>
+    <use xlink:href="#exit-marker" x="602" y="550"><title>1100s south exit</title></use>
+    <use xlink:href="#exit-marker" x="711" y="135"><title>1400s bend exit</title></use>
+    <use xlink:href="#exit-marker" x="1058" y="221"><title>1400s east exit</title></use>
+    <use xlink:href="#exit-marker" x="737" y="328"><title>1400s southwest exit</title></use>
   </g>
 
   <g font-family="Helvetica">

@@ -1,0 +1,2982 @@
+{
+  "building": "Klaus",
+  "directed": false,
+  "floors": [
+    {
+      "floor": 1,
+      "coordinateSpace": {
+        "width": 1125,
+        "height": 560,
+        "unit": "px",
+        "origin": "top-left"
+      },
+      "mapUrl": "/floorplans/klaus-level-1.svg"
+    },
+    {
+      "floor": 2,
+      "coordinateSpace": {
+        "width": 1275,
+        "height": 660,
+        "unit": "px",
+        "origin": "top-left"
+      },
+      "mapUrl": "/floorplans/klaus-level-2.svg"
+    },
+    {
+      "floor": 3,
+      "coordinateSpace": {
+        "width": 1275,
+        "height": 680,
+        "unit": "px",
+        "origin": "top-left"
+      },
+      "mapUrl": "/floorplans/klaus-level-3.svg"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "l1-n001",
+      "floor": 1,
+      "x": 57,
+      "y": 385
+    },
+    {
+      "id": "l1-n007",
+      "floor": 1,
+      "x": 92.5,
+      "y": 339.5
+    },
+    {
+      "id": "l1-n013",
+      "floor": 1,
+      "x": 136,
+      "y": 294
+    },
+    {
+      "id": "l1-n018",
+      "floor": 1,
+      "x": 174.25,
+      "y": 260.0
+    },
+    {
+      "id": "l1-n024",
+      "floor": 1,
+      "x": 223.75,
+      "y": 218.0
+    },
+    {
+      "id": "l1-n029",
+      "floor": 1,
+      "x": 268,
+      "y": 185
+    },
+    {
+      "id": "l1-n035",
+      "floor": 1,
+      "x": 316.5,
+      "y": 154.5
+    },
+    {
+      "id": "l1-n040",
+      "floor": 1,
+      "x": 364.75,
+      "y": 128.25
+    },
+    {
+      "id": "l1-n045",
+      "floor": 1,
+      "x": 418,
+      "y": 104
+    },
+    {
+      "id": "l1-n050",
+      "floor": 1,
+      "x": 472.0,
+      "y": 85.0
+    },
+    {
+      "id": "l1-n055",
+      "floor": 1,
+      "x": 527.5,
+      "y": 71.0
+    },
+    {
+      "id": "l1-n060",
+      "floor": 1,
+      "x": 583.75,
+      "y": 60.75
+    },
+    {
+      "id": "l1-n066",
+      "floor": 1,
+      "x": 645,
+      "y": 54
+    },
+    {
+      "id": "l1-n071",
+      "floor": 1,
+      "x": 647.67,
+      "y": 108.67
+    },
+    {
+      "id": "l1-n077",
+      "floor": 1,
+      "x": 650.0,
+      "y": 166.5
+    },
+    {
+      "id": "l1-n082",
+      "floor": 1,
+      "x": 653,
+      "y": 219
+    },
+    {
+      "id": "l1-n087",
+      "floor": 1,
+      "x": 298.33,
+      "y": 228.33
+    },
+    {
+      "id": "l1-n091",
+      "floor": 1,
+      "x": 320.0,
+      "y": 263.5
+    },
+    {
+      "id": "l1-n096",
+      "floor": 1,
+      "x": 347,
+      "y": 309
+    },
+    {
+      "id": "l1-n103",
+      "floor": 1,
+      "x": 406.0,
+      "y": 282.0
+    },
+    {
+      "id": "l1-n110",
+      "floor": 1,
+      "x": 474,
+      "y": 254
+    },
+    {
+      "id": "l1-n116",
+      "floor": 1,
+      "x": 535.0,
+      "y": 236.5
+    },
+    {
+      "id": "l1-n122",
+      "floor": 1,
+      "x": 589.5,
+      "y": 225.0
+    },
+    {
+      "id": "l1-n136",
+      "floor": 1,
+      "x": 376.5,
+      "y": 359.0
+    },
+    {
+      "id": "l1-n142",
+      "floor": 1,
+      "x": 409.8,
+      "y": 413.0
+    },
+    {
+      "id": "l1-n149",
+      "floor": 1,
+      "x": 445,
+      "y": 473
+    },
+    {
+      "id": "l1-n155",
+      "floor": 1,
+      "x": 478,
+      "y": 524
+    },
+    {
+      "id": "l1-n163",
+      "floor": 1,
+      "x": 535.0,
+      "y": 492.0
+    },
+    {
+      "id": "l1-n176",
+      "floor": 1,
+      "x": 602,
+      "y": 550,
+      "kind": "exit"
+    },
+    {
+      "id": "l1-n177",
+      "floor": 1,
+      "x": 754,
+      "y": 135
+    },
+    {
+      "id": "l1-n183",
+      "floor": 1,
+      "x": 813,
+      "y": 142
+    },
+    {
+      "id": "l1-n188",
+      "floor": 1,
+      "x": 865.0,
+      "y": 151.5
+    },
+    {
+      "id": "l1-n195",
+      "floor": 1,
+      "x": 930.25,
+      "y": 169.25
+    },
+    {
+      "id": "l1-n200",
+      "floor": 1,
+      "x": 977.5,
+      "y": 187.0
+    },
+    {
+      "id": "l1-n206",
+      "floor": 1,
+      "x": 1058,
+      "y": 221,
+      "kind": "exit"
+    },
+    {
+      "id": "l1-n212",
+      "floor": 1,
+      "x": 747,
+      "y": 193
+    },
+    {
+      "id": "l1-n217",
+      "floor": 1,
+      "x": 742.67,
+      "y": 243.0
+    },
+    {
+      "id": "l1-n223",
+      "floor": 1,
+      "x": 737,
+      "y": 328,
+      "kind": "exit"
+    },
+    {
+      "id": "l1-exit-1300-west",
+      "floor": 1,
+      "x": 41,
+      "y": 404,
+      "kind": "exit"
+    },
+    {
+      "id": "l1-exit-1300-east",
+      "floor": 1,
+      "x": 679,
+      "y": 53,
+      "kind": "exit"
+    },
+    {
+      "id": "l1-atrium-north",
+      "floor": 1,
+      "x": 513,
+      "y": 325
+    },
+    {
+      "id": "l1-atrium-middle",
+      "floor": 1,
+      "x": 545,
+      "y": 368
+    },
+    {
+      "id": "l1-atrium-southeast",
+      "floor": 1,
+      "x": 575,
+      "y": 414
+    },
+    {
+      "id": "l1-atrium-exit-junction",
+      "floor": 1,
+      "x": 608.5,
+      "y": 463.0
+    },
+    {
+      "id": "l1-exit-atrium-east",
+      "floor": 1,
+      "x": 690,
+      "y": 453,
+      "kind": "exit"
+    },
+    {
+      "id": "l1-stairs-1300-west",
+      "floor": 1,
+      "x": 113,
+      "y": 407,
+      "kind": "stairs",
+      "accessStatus": "unverified",
+      "candidateAccessNodeId": "l1-n001",
+      "connectorId": "stairs-west"
+    },
+    {
+      "id": "l1-stairs-atrium",
+      "floor": 1,
+      "x": 565,
+      "y": 444,
+      "kind": "stairs",
+      "accessStatus": "unverified",
+      "candidateAccessNodeId": "l1-atrium-southeast",
+      "connectorId": "stairs-central"
+    },
+    {
+      "id": "l1-stairs-1100-south",
+      "floor": 1,
+      "x": 624,
+      "y": 500,
+      "kind": "stairs",
+      "accessStatus": "unverified",
+      "candidateAccessNodeId": "l1-n176",
+      "connectorId": "stairs-south"
+    },
+    {
+      "id": "l1-stairs-1400-west",
+      "floor": 1,
+      "x": 775,
+      "y": 294,
+      "kind": "stairs",
+      "accessStatus": "unverified",
+      "candidateAccessNodeId": "l1-classroom-south-landing-approach",
+      "connectorId": "stairs-classroom-west"
+    },
+    {
+      "id": "l1-stairs-1400-east",
+      "floor": 1,
+      "x": 1045,
+      "y": 180,
+      "kind": "stairs",
+      "accessStatus": "unverified",
+      "candidateAccessNodeId": "l1-classroom-east-landing-approach",
+      "connectorId": "stairs-classroom-east"
+    },
+    {
+      "id": "l1-elevator-1200",
+      "floor": 1,
+      "x": 445,
+      "y": 299,
+      "kind": "elevator",
+      "accessStatus": "unverified",
+      "candidateAccessNodeId": "l1-n110",
+      "connectorId": "elevator-blue"
+    },
+    {
+      "id": "l1-elevator-1100-south",
+      "floor": 1,
+      "x": 583,
+      "y": 493,
+      "kind": "elevator",
+      "accessStatus": "unverified",
+      "candidateAccessNodeId": "l1-atrium-exit-junction",
+      "connectorId": "elevator-south"
+    },
+    {
+      "id": "l1-elevator-1400",
+      "floor": 1,
+      "x": 800,
+      "y": 252,
+      "kind": "elevator",
+      "accessStatus": "unverified",
+      "candidateAccessNodeId": "l1-classroom-south-landing-approach",
+      "connectorId": "elevator-classroom"
+    },
+    {
+      "id": "l1-exit-1400-bend",
+      "floor": 1,
+      "x": 711,
+      "y": 135,
+      "kind": "exit"
+    },
+    {
+      "id": "l1-classroom-south-landing-approach",
+      "floor": 1,
+      "x": 738,
+      "y": 294
+    },
+    {
+      "id": "l1-classroom-east-landing-approach",
+      "floor": 1,
+      "x": 1019,
+      "y": 204
+    },
+    {
+      "id": "l2-n001",
+      "floor": 2,
+      "x": 127,
+      "y": 432
+    },
+    {
+      "id": "l2-n002",
+      "floor": 2,
+      "x": 183,
+      "y": 352
+    },
+    {
+      "id": "l2-n003",
+      "floor": 2,
+      "x": 253,
+      "y": 276
+    },
+    {
+      "id": "l2-n004",
+      "floor": 2,
+      "x": 332,
+      "y": 215
+    },
+    {
+      "id": "l2-n005",
+      "floor": 2,
+      "x": 409,
+      "y": 164
+    },
+    {
+      "id": "l2-n006",
+      "floor": 2,
+      "x": 500,
+      "y": 123
+    },
+    {
+      "id": "l2-n007",
+      "floor": 2,
+      "x": 596,
+      "y": 93
+    },
+    {
+      "id": "l2-n008",
+      "floor": 2,
+      "x": 680,
+      "y": 75
+    },
+    {
+      "id": "l2-n009",
+      "floor": 2,
+      "x": 747,
+      "y": 67
+    },
+    {
+      "id": "l2-n010",
+      "floor": 2,
+      "x": 818,
+      "y": 65
+    },
+    {
+      "id": "l2-n011",
+      "floor": 2,
+      "x": 878,
+      "y": 66
+    },
+    {
+      "id": "l2-n012",
+      "floor": 2,
+      "x": 866,
+      "y": 143
+    },
+    {
+      "id": "l2-n013",
+      "floor": 2,
+      "x": 365,
+      "y": 268
+    },
+    {
+      "id": "l2-n014",
+      "floor": 2,
+      "x": 410,
+      "y": 341
+    },
+    {
+      "id": "l2-n015",
+      "floor": 2,
+      "x": 747,
+      "y": 160
+    },
+    {
+      "id": "l2-n016",
+      "floor": 2,
+      "x": 747,
+      "y": 248
+    },
+    {
+      "id": "l2-n017",
+      "floor": 2,
+      "x": 683,
+      "y": 253
+    },
+    {
+      "id": "l2-n018",
+      "floor": 2,
+      "x": 614,
+      "y": 267
+    },
+    {
+      "id": "l2-n019",
+      "floor": 2,
+      "x": 547,
+      "y": 285
+    },
+    {
+      "id": "l2-n020",
+      "floor": 2,
+      "x": 480,
+      "y": 310
+    },
+    {
+      "id": "l2-n021",
+      "floor": 2,
+      "x": 551,
+      "y": 325
+    },
+    {
+      "id": "l2-n022",
+      "floor": 2,
+      "x": 580,
+      "y": 368
+    },
+    {
+      "id": "l2-n023",
+      "floor": 2,
+      "x": 605,
+      "y": 411,
+      "kind": "stairs",
+      "connectorId": "stairs-central"
+    },
+    {
+      "id": "l2-n024",
+      "floor": 2,
+      "x": 444,
+      "y": 409
+    },
+    {
+      "id": "l2-n025",
+      "floor": 2,
+      "x": 482,
+      "y": 476
+    },
+    {
+      "id": "l2-n026",
+      "floor": 2,
+      "x": 516,
+      "y": 540
+    },
+    {
+      "id": "l2-n027",
+      "floor": 2,
+      "x": 539,
+      "y": 580
+    },
+    {
+      "id": "l2-n028",
+      "floor": 2,
+      "x": 598,
+      "y": 550
+    },
+    {
+      "id": "l2-n029",
+      "floor": 2,
+      "x": 518,
+      "y": 374
+    },
+    {
+      "id": "l2-n030",
+      "floor": 2,
+      "x": 554,
+      "y": 441
+    },
+    {
+      "id": "l2-n031",
+      "floor": 2,
+      "x": 590,
+      "y": 508
+    },
+    {
+      "id": "l2-n032",
+      "floor": 2,
+      "x": 613,
+      "y": 546
+    },
+    {
+      "id": "l2-n033",
+      "floor": 2,
+      "x": 663,
+      "y": 529
+    },
+    {
+      "id": "l2-n034",
+      "floor": 2,
+      "x": 710,
+      "y": 529
+    },
+    {
+      "id": "l2-n035",
+      "floor": 2,
+      "x": 722,
+      "y": 570,
+      "kind": "stairs",
+      "connectorId": "stairs-south"
+    },
+    {
+      "id": "l2-n036",
+      "floor": 2,
+      "x": 944,
+      "y": 157
+    },
+    {
+      "id": "l2-n037",
+      "floor": 2,
+      "x": 1020,
+      "y": 177
+    },
+    {
+      "id": "l2-n038",
+      "floor": 2,
+      "x": 1094,
+      "y": 202
+    },
+    {
+      "id": "l2-n039",
+      "floor": 2,
+      "x": 1173,
+      "y": 233
+    },
+    {
+      "id": "l2-n040",
+      "floor": 2,
+      "x": 1197,
+      "y": 222,
+      "kind": "stairs",
+      "connectorId": "stairs-classroom-east"
+    },
+    {
+      "id": "l2-n041",
+      "floor": 2,
+      "x": 864,
+      "y": 213
+    },
+    {
+      "id": "l2-n042",
+      "floor": 2,
+      "x": 857,
+      "y": 283
+    },
+    {
+      "id": "l2-n043",
+      "floor": 2,
+      "x": 856,
+      "y": 319
+    },
+    {
+      "id": "l2-n044",
+      "floor": 2,
+      "x": 905,
+      "y": 330,
+      "kind": "stairs",
+      "connectorId": "stairs-classroom-west"
+    },
+    {
+      "id": "l2-n045",
+      "floor": 2,
+      "x": 135,
+      "y": 444,
+      "kind": "stairs",
+      "connectorId": "stairs-west"
+    },
+    {
+      "id": "l2-n046",
+      "floor": 2,
+      "x": 514,
+      "y": 326,
+      "kind": "elevator",
+      "connectorId": "elevator-blue"
+    },
+    {
+      "id": "l2-n047",
+      "floor": 2,
+      "x": 672,
+      "y": 586,
+      "kind": "elevator",
+      "connectorId": "elevator-south"
+    },
+    {
+      "id": "l2-n048",
+      "floor": 2,
+      "x": 919,
+      "y": 286,
+      "kind": "elevator",
+      "connectorId": "elevator-classroom"
+    },
+    {
+      "id": "l3-n001",
+      "floor": 3,
+      "x": 126,
+      "y": 445
+    },
+    {
+      "id": "l3-n002",
+      "floor": 3,
+      "x": 183,
+      "y": 367
+    },
+    {
+      "id": "l3-n003",
+      "floor": 3,
+      "x": 253,
+      "y": 291
+    },
+    {
+      "id": "l3-n004",
+      "floor": 3,
+      "x": 333,
+      "y": 220
+    },
+    {
+      "id": "l3-n005",
+      "floor": 3,
+      "x": 416,
+      "y": 168
+    },
+    {
+      "id": "l3-n006",
+      "floor": 3,
+      "x": 505,
+      "y": 128
+    },
+    {
+      "id": "l3-n007",
+      "floor": 3,
+      "x": 603,
+      "y": 96
+    },
+    {
+      "id": "l3-n008",
+      "floor": 3,
+      "x": 692,
+      "y": 77
+    },
+    {
+      "id": "l3-n009",
+      "floor": 3,
+      "x": 763,
+      "y": 69
+    },
+    {
+      "id": "l3-n010",
+      "floor": 3,
+      "x": 838,
+      "y": 68
+    },
+    {
+      "id": "l3-n011",
+      "floor": 3,
+      "x": 909,
+      "y": 73
+    },
+    {
+      "id": "l3-n012",
+      "floor": 3,
+      "x": 979,
+      "y": 80
+    },
+    {
+      "id": "l3-n013",
+      "floor": 3,
+      "x": 1036,
+      "y": 93
+    },
+    {
+      "id": "l3-n014",
+      "floor": 3,
+      "x": 368,
+      "y": 274
+    },
+    {
+      "id": "l3-n015",
+      "floor": 3,
+      "x": 419,
+      "y": 353
+    },
+    {
+      "id": "l3-n016",
+      "floor": 3,
+      "x": 764,
+      "y": 162
+    },
+    {
+      "id": "l3-n017",
+      "floor": 3,
+      "x": 766,
+      "y": 253
+    },
+    {
+      "id": "l3-n018",
+      "floor": 3,
+      "x": 694,
+      "y": 257
+    },
+    {
+      "id": "l3-n019",
+      "floor": 3,
+      "x": 623,
+      "y": 271
+    },
+    {
+      "id": "l3-n020",
+      "floor": 3,
+      "x": 555,
+      "y": 288
+    },
+    {
+      "id": "l3-n021",
+      "floor": 3,
+      "x": 487,
+      "y": 317
+    },
+    {
+      "id": "l3-n024",
+      "floor": 3,
+      "x": 551,
+      "y": 330,
+      "kind": "stairs",
+      "connectorId": "stairs-central"
+    },
+    {
+      "id": "l3-n025",
+      "floor": 3,
+      "x": 452,
+      "y": 416
+    },
+    {
+      "id": "l3-n026",
+      "floor": 3,
+      "x": 491,
+      "y": 486
+    },
+    {
+      "id": "l3-n027",
+      "floor": 3,
+      "x": 528,
+      "y": 553
+    },
+    {
+      "id": "l3-n028",
+      "floor": 3,
+      "x": 557,
+      "y": 601
+    },
+    {
+      "id": "l3-n029",
+      "floor": 3,
+      "x": 620,
+      "y": 562
+    },
+    {
+      "id": "l3-n030",
+      "floor": 3,
+      "x": 530,
+      "y": 383
+    },
+    {
+      "id": "l3-n031",
+      "floor": 3,
+      "x": 570,
+      "y": 450
+    },
+    {
+      "id": "l3-n032",
+      "floor": 3,
+      "x": 608,
+      "y": 521
+    },
+    {
+      "id": "l3-n033",
+      "floor": 3,
+      "x": 631,
+      "y": 555
+    },
+    {
+      "id": "l3-n034",
+      "floor": 3,
+      "x": 672,
+      "y": 540
+    },
+    {
+      "id": "l3-n035",
+      "floor": 3,
+      "x": 716,
+      "y": 549
+    },
+    {
+      "id": "l3-n036",
+      "floor": 3,
+      "x": 743,
+      "y": 580,
+      "kind": "stairs",
+      "connectorId": "stairs-south"
+    },
+    {
+      "id": "l3-n037",
+      "floor": 3,
+      "x": 906,
+      "y": 132
+    },
+    {
+      "id": "l3-n038",
+      "floor": 3,
+      "x": 900,
+      "y": 198
+    },
+    {
+      "id": "l3-n039",
+      "floor": 3,
+      "x": 894,
+      "y": 260
+    },
+    {
+      "id": "l3-n040",
+      "floor": 3,
+      "x": 932,
+      "y": 290,
+      "kind": "elevator",
+      "connectorId": "elevator-classroom"
+    },
+    {
+      "id": "l3-n041",
+      "floor": 3,
+      "x": 972,
+      "y": 147
+    },
+    {
+      "id": "l3-n042",
+      "floor": 3,
+      "x": 1031,
+      "y": 161
+    },
+    {
+      "id": "l3-n043",
+      "floor": 3,
+      "x": 1100,
+      "y": 184
+    },
+    {
+      "id": "l3-n044",
+      "floor": 3,
+      "x": 1169,
+      "y": 208
+    },
+    {
+      "id": "l3-n045",
+      "floor": 3,
+      "x": 1216,
+      "y": 225,
+      "kind": "stairs",
+      "connectorId": "stairs-classroom-east"
+    },
+    {
+      "id": "l3-n046",
+      "floor": 3,
+      "x": 716,
+      "y": 611
+    },
+    {
+      "id": "l3-n047",
+      "floor": 3,
+      "x": 715,
+      "y": 657,
+      "kind": "exit"
+    },
+    {
+      "id": "l3-n048",
+      "floor": 3,
+      "x": 134,
+      "y": 454,
+      "kind": "stairs",
+      "connectorId": "stairs-west"
+    },
+    {
+      "id": "l3-n049",
+      "floor": 3,
+      "x": 525,
+      "y": 331,
+      "kind": "elevator",
+      "connectorId": "elevator-blue"
+    },
+    {
+      "id": "l3-n050",
+      "floor": 3,
+      "x": 680,
+      "y": 578,
+      "kind": "elevator",
+      "connectorId": "elevator-south"
+    }
+  ],
+  "edges": [
+    {
+      "id": "1300-west-01",
+      "source": "l1-n001",
+      "target": "l1-n007",
+      "kind": "walk",
+      "lengthPx": 57.71,
+      "cost": 57.71
+    },
+    {
+      "id": "1300-west-02",
+      "source": "l1-n007",
+      "target": "l1-n013",
+      "kind": "walk",
+      "lengthPx": 62.948,
+      "cost": 62.948
+    },
+    {
+      "id": "1300-west-03",
+      "source": "l1-n013",
+      "target": "l1-n018",
+      "kind": "walk",
+      "lengthPx": 51.177,
+      "cost": 51.177
+    },
+    {
+      "id": "1300-west-04",
+      "source": "l1-n018",
+      "target": "l1-n024",
+      "kind": "walk",
+      "lengthPx": 64.917,
+      "cost": 64.917
+    },
+    {
+      "id": "1300-west-05",
+      "source": "l1-n024",
+      "target": "l1-n029",
+      "kind": "walk",
+      "lengthPx": 55.2,
+      "cost": 55.2
+    },
+    {
+      "id": "1300-east-01",
+      "source": "l1-n029",
+      "target": "l1-n035",
+      "kind": "walk",
+      "lengthPx": 57.293,
+      "cost": 57.293
+    },
+    {
+      "id": "1300-east-02",
+      "source": "l1-n035",
+      "target": "l1-n040",
+      "kind": "walk",
+      "lengthPx": 54.928,
+      "cost": 54.928
+    },
+    {
+      "id": "1300-east-03",
+      "source": "l1-n040",
+      "target": "l1-n045",
+      "kind": "walk",
+      "lengthPx": 58.512,
+      "cost": 58.512
+    },
+    {
+      "id": "1300-east-04",
+      "source": "l1-n045",
+      "target": "l1-n050",
+      "kind": "walk",
+      "lengthPx": 57.245,
+      "cost": 57.245
+    },
+    {
+      "id": "1300-east-05",
+      "source": "l1-n050",
+      "target": "l1-n055",
+      "kind": "walk",
+      "lengthPx": 57.239,
+      "cost": 57.239
+    },
+    {
+      "id": "1300-east-06",
+      "source": "l1-n055",
+      "target": "l1-n060",
+      "kind": "walk",
+      "lengthPx": 57.176,
+      "cost": 57.176
+    },
+    {
+      "id": "1300-east-07",
+      "source": "l1-n060",
+      "target": "l1-n066",
+      "kind": "walk",
+      "lengthPx": 61.621,
+      "cost": 61.621
+    },
+    {
+      "id": "1300-1200-east-01",
+      "source": "l1-n066",
+      "target": "l1-n071",
+      "kind": "walk",
+      "lengthPx": 54.735,
+      "cost": 54.735
+    },
+    {
+      "id": "1300-1200-east-02",
+      "source": "l1-n071",
+      "target": "l1-n077",
+      "kind": "walk",
+      "lengthPx": 57.877,
+      "cost": 57.877
+    },
+    {
+      "id": "1300-1200-east-03",
+      "source": "l1-n077",
+      "target": "l1-n082",
+      "kind": "walk",
+      "lengthPx": 52.586,
+      "cost": 52.586
+    },
+    {
+      "id": "1300-1200-west-01",
+      "source": "l1-n029",
+      "target": "l1-n087",
+      "kind": "walk",
+      "lengthPx": 52.89,
+      "cost": 52.89
+    },
+    {
+      "id": "1300-1200-west-02",
+      "source": "l1-n087",
+      "target": "l1-n091",
+      "kind": "walk",
+      "lengthPx": 41.31,
+      "cost": 41.31
+    },
+    {
+      "id": "1300-1200-west-03",
+      "source": "l1-n091",
+      "target": "l1-n096",
+      "kind": "walk",
+      "lengthPx": 52.908,
+      "cost": 52.908
+    },
+    {
+      "id": "1200-west-01",
+      "source": "l1-n096",
+      "target": "l1-n103",
+      "kind": "walk",
+      "lengthPx": 64.885,
+      "cost": 64.885
+    },
+    {
+      "id": "1200-west-02",
+      "source": "l1-n103",
+      "target": "l1-n110",
+      "kind": "walk",
+      "lengthPx": 73.539,
+      "cost": 73.539
+    },
+    {
+      "id": "1200-east-01",
+      "source": "l1-n110",
+      "target": "l1-n116",
+      "kind": "walk",
+      "lengthPx": 63.461,
+      "cost": 63.461
+    },
+    {
+      "id": "1200-east-02",
+      "source": "l1-n116",
+      "target": "l1-n122",
+      "kind": "walk",
+      "lengthPx": 55.7,
+      "cost": 55.7
+    },
+    {
+      "id": "1200-east-03",
+      "source": "l1-n122",
+      "target": "l1-n082",
+      "kind": "walk",
+      "lengthPx": 63.783,
+      "cost": 63.783
+    },
+    {
+      "id": "1100-west-01",
+      "source": "l1-n096",
+      "target": "l1-n136",
+      "kind": "walk",
+      "lengthPx": 58.054,
+      "cost": 58.054
+    },
+    {
+      "id": "1100-west-02",
+      "source": "l1-n136",
+      "target": "l1-n142",
+      "kind": "walk",
+      "lengthPx": 63.442,
+      "cost": 63.442
+    },
+    {
+      "id": "1100-west-03",
+      "source": "l1-n142",
+      "target": "l1-n149",
+      "kind": "walk",
+      "lengthPx": 69.563,
+      "cost": 69.563
+    },
+    {
+      "id": "1100-west-04",
+      "source": "l1-n149",
+      "target": "l1-n155",
+      "kind": "walk",
+      "lengthPx": 60.745,
+      "cost": 60.745
+    },
+    {
+      "id": "1100-south-01",
+      "source": "l1-n155",
+      "target": "l1-n163",
+      "kind": "walk",
+      "lengthPx": 65.368,
+      "cost": 65.368
+    },
+    {
+      "id": "1100-south-02",
+      "source": "l1-n163",
+      "target": "l1-atrium-exit-junction",
+      "kind": "walk",
+      "lengthPx": 79.014,
+      "cost": 79.014
+    },
+    {
+      "id": "1100-lower-01",
+      "source": "l1-atrium-exit-junction",
+      "target": "l1-n176",
+      "kind": "walk",
+      "lengthPx": 87.242,
+      "cost": 87.242
+    },
+    {
+      "id": "1400-north-01",
+      "source": "l1-n177",
+      "target": "l1-n183",
+      "kind": "walk",
+      "lengthPx": 59.414,
+      "cost": 59.414
+    },
+    {
+      "id": "1400-north-02",
+      "source": "l1-n183",
+      "target": "l1-n188",
+      "kind": "walk",
+      "lengthPx": 52.861,
+      "cost": 52.861
+    },
+    {
+      "id": "1400-north-03",
+      "source": "l1-n188",
+      "target": "l1-n195",
+      "kind": "walk",
+      "lengthPx": 67.621,
+      "cost": 67.621
+    },
+    {
+      "id": "1400-north-04",
+      "source": "l1-n195",
+      "target": "l1-n200",
+      "kind": "walk",
+      "lengthPx": 50.474,
+      "cost": 50.474
+    },
+    {
+      "id": "1400-north-05",
+      "source": "l1-n200",
+      "target": "l1-classroom-east-landing-approach",
+      "kind": "walk",
+      "lengthPx": 44.847,
+      "cost": 44.847
+    },
+    {
+      "id": "1400-north-06",
+      "source": "l1-classroom-east-landing-approach",
+      "target": "l1-n206",
+      "kind": "walk",
+      "lengthPx": 42.544,
+      "cost": 42.544
+    },
+    {
+      "id": "1400-west-01",
+      "source": "l1-n177",
+      "target": "l1-n212",
+      "kind": "walk",
+      "lengthPx": 58.421,
+      "cost": 58.421
+    },
+    {
+      "id": "1400-west-02",
+      "source": "l1-n212",
+      "target": "l1-n217",
+      "kind": "walk",
+      "lengthPx": 50.187,
+      "cost": 50.187
+    },
+    {
+      "id": "1400-west-03",
+      "source": "l1-n217",
+      "target": "l1-classroom-south-landing-approach",
+      "kind": "walk",
+      "lengthPx": 51.213,
+      "cost": 51.213
+    },
+    {
+      "id": "1400-west-04",
+      "source": "l1-classroom-south-landing-approach",
+      "target": "l1-n223",
+      "kind": "walk",
+      "lengthPx": 34.015,
+      "cost": 34.015
+    },
+    {
+      "id": "l1-exit-1300-west-01",
+      "source": "l1-n001",
+      "target": "l1-exit-1300-west",
+      "kind": "walk",
+      "lengthPx": 24.839,
+      "cost": 24.839
+    },
+    {
+      "id": "l1-exit-1300-east-01",
+      "source": "l1-n066",
+      "target": "l1-exit-1300-east",
+      "kind": "walk",
+      "lengthPx": 34.015,
+      "cost": 34.015
+    },
+    {
+      "id": "1100-atrium-01",
+      "source": "l1-n110",
+      "target": "l1-atrium-north",
+      "kind": "walk",
+      "lengthPx": 81.006,
+      "cost": 81.006
+    },
+    {
+      "id": "1100-atrium-02",
+      "source": "l1-atrium-north",
+      "target": "l1-atrium-middle",
+      "kind": "walk",
+      "lengthPx": 53.6,
+      "cost": 53.6
+    },
+    {
+      "id": "1100-atrium-03",
+      "source": "l1-atrium-middle",
+      "target": "l1-atrium-southeast",
+      "kind": "walk",
+      "lengthPx": 54.918,
+      "cost": 54.918
+    },
+    {
+      "id": "1100-atrium-04",
+      "source": "l1-atrium-southeast",
+      "target": "l1-atrium-exit-junction",
+      "kind": "walk",
+      "lengthPx": 59.357,
+      "cost": 59.357
+    },
+    {
+      "id": "l1-exit-atrium-east-01",
+      "source": "l1-atrium-exit-junction",
+      "target": "l1-exit-atrium-east",
+      "kind": "walk",
+      "lengthPx": 82.111,
+      "cost": 82.111
+    },
+    {
+      "id": "l1-exit-1400-bend-01",
+      "source": "l1-n177",
+      "target": "l1-exit-1400-bend",
+      "kind": "walk",
+      "lengthPx": 43.0,
+      "cost": 43.0
+    },
+    {
+      "id": "l1-stairs-1300-west-approach-01",
+      "source": "l1-n001",
+      "target": "l1-stairs-1300-west",
+      "kind": "walk",
+      "lengthPx": 60.166,
+      "cost": 60.166,
+      "status": "inferred"
+    },
+    {
+      "id": "l1-stairs-atrium-approach-01",
+      "source": "l1-atrium-southeast",
+      "target": "l1-stairs-atrium",
+      "kind": "walk",
+      "lengthPx": 31.623,
+      "cost": 31.623,
+      "status": "inferred"
+    },
+    {
+      "id": "l1-stairs-1100-south-approach-01",
+      "source": "l1-n176",
+      "target": "l1-stairs-1100-south",
+      "kind": "walk",
+      "lengthPx": 54.626,
+      "cost": 54.626,
+      "status": "inferred"
+    },
+    {
+      "id": "l1-stairs-1400-east-approach-01",
+      "source": "l1-classroom-east-landing-approach",
+      "target": "l1-stairs-1400-east",
+      "kind": "walk",
+      "lengthPx": 35.384,
+      "cost": 35.384,
+      "status": "inferred"
+    },
+    {
+      "id": "l1-stairs-1400-west-approach-01",
+      "source": "l1-classroom-south-landing-approach",
+      "target": "l1-stairs-1400-west",
+      "kind": "walk",
+      "lengthPx": 37.0,
+      "cost": 37.0,
+      "status": "inferred"
+    },
+    {
+      "id": "l1-elevator-1200-approach-01",
+      "source": "l1-n110",
+      "target": "l1-elevator-1200",
+      "kind": "walk",
+      "lengthPx": 53.535,
+      "cost": 53.535,
+      "status": "inferred"
+    },
+    {
+      "id": "l1-elevator-1100-south-approach-01",
+      "source": "l1-atrium-exit-junction",
+      "target": "l1-elevator-1100-south",
+      "kind": "walk",
+      "lengthPx": 39.373,
+      "cost": 39.373,
+      "status": "inferred"
+    },
+    {
+      "id": "l1-elevator-1400-approach-01",
+      "source": "l1-classroom-south-landing-approach",
+      "target": "l1-elevator-1400",
+      "kind": "walk",
+      "lengthPx": 74.887,
+      "cost": 74.887,
+      "status": "inferred"
+    },
+    {
+      "id": "l2-2300-main-01",
+      "source": "l2-n001",
+      "target": "l2-n002",
+      "kind": "walk",
+      "lengthPx": 97.652,
+      "cost": 85.934
+    },
+    {
+      "id": "l2-2300-main-02",
+      "source": "l2-n002",
+      "target": "l2-n003",
+      "kind": "walk",
+      "lengthPx": 103.325,
+      "cost": 90.926
+    },
+    {
+      "id": "l2-2300-main-03",
+      "source": "l2-n003",
+      "target": "l2-n004",
+      "kind": "walk",
+      "lengthPx": 99.81,
+      "cost": 87.833
+    },
+    {
+      "id": "l2-2300-main-04",
+      "source": "l2-n004",
+      "target": "l2-n005",
+      "kind": "walk",
+      "lengthPx": 92.358,
+      "cost": 81.275
+    },
+    {
+      "id": "l2-2300-main-05",
+      "source": "l2-n005",
+      "target": "l2-n006",
+      "kind": "walk",
+      "lengthPx": 99.81,
+      "cost": 87.833
+    },
+    {
+      "id": "l2-2300-main-06",
+      "source": "l2-n006",
+      "target": "l2-n007",
+      "kind": "walk",
+      "lengthPx": 100.578,
+      "cost": 88.509
+    },
+    {
+      "id": "l2-2300-main-07",
+      "source": "l2-n007",
+      "target": "l2-n008",
+      "kind": "walk",
+      "lengthPx": 85.907,
+      "cost": 75.598
+    },
+    {
+      "id": "l2-2300-main-08",
+      "source": "l2-n008",
+      "target": "l2-n009",
+      "kind": "walk",
+      "lengthPx": 67.476,
+      "cost": 59.379
+    },
+    {
+      "id": "l2-2300-main-09",
+      "source": "l2-n009",
+      "target": "l2-n010",
+      "kind": "walk",
+      "lengthPx": 71.028,
+      "cost": 62.505
+    },
+    {
+      "id": "l2-2300-main-10",
+      "source": "l2-n010",
+      "target": "l2-n011",
+      "kind": "walk",
+      "lengthPx": 60.008,
+      "cost": 52.807
+    },
+    {
+      "id": "l2-2300-main-11",
+      "source": "l2-n011",
+      "target": "l2-n012",
+      "kind": "walk",
+      "lengthPx": 77.929,
+      "cost": 68.578
+    },
+    {
+      "id": "l2-2300-2200-west-01",
+      "source": "l2-n004",
+      "target": "l2-n013",
+      "kind": "walk",
+      "lengthPx": 62.434,
+      "cost": 54.942
+    },
+    {
+      "id": "l2-2300-2200-west-02",
+      "source": "l2-n013",
+      "target": "l2-n014",
+      "kind": "walk",
+      "lengthPx": 85.755,
+      "cost": 75.465
+    },
+    {
+      "id": "l2-2300-2200-east-01",
+      "source": "l2-n009",
+      "target": "l2-n015",
+      "kind": "walk",
+      "lengthPx": 93.0,
+      "cost": 81.84
+    },
+    {
+      "id": "l2-2300-2200-east-02",
+      "source": "l2-n015",
+      "target": "l2-n016",
+      "kind": "walk",
+      "lengthPx": 88.0,
+      "cost": 77.44
+    },
+    {
+      "id": "l2-2300-2200-east-03",
+      "source": "l2-n016",
+      "target": "l2-n017",
+      "kind": "walk",
+      "lengthPx": 64.195,
+      "cost": 56.492
+    },
+    {
+      "id": "l2-2300-2200-east-04",
+      "source": "l2-n017",
+      "target": "l2-n018",
+      "kind": "walk",
+      "lengthPx": 70.406,
+      "cost": 61.957
+    },
+    {
+      "id": "l2-2300-2200-east-05",
+      "source": "l2-n018",
+      "target": "l2-n019",
+      "kind": "walk",
+      "lengthPx": 69.376,
+      "cost": 61.051
+    },
+    {
+      "id": "l2-2300-2200-east-06",
+      "source": "l2-n019",
+      "target": "l2-n020",
+      "kind": "walk",
+      "lengthPx": 71.512,
+      "cost": 62.931
+    },
+    {
+      "id": "l2-2300-2200-east-07",
+      "source": "l2-n020",
+      "target": "l2-n014",
+      "kind": "walk",
+      "lengthPx": 76.557,
+      "cost": 67.37
+    },
+    {
+      "id": "l2-2200-central-01",
+      "source": "l2-n019",
+      "target": "l2-n021",
+      "kind": "walk",
+      "lengthPx": 40.2,
+      "cost": 35.376
+    },
+    {
+      "id": "l2-2200-central-02",
+      "source": "l2-n021",
+      "target": "l2-n022",
+      "kind": "walk",
+      "lengthPx": 51.865,
+      "cost": 45.641
+    },
+    {
+      "id": "l2-2200-central-03",
+      "source": "l2-n022",
+      "target": "l2-n023",
+      "kind": "walk",
+      "lengthPx": 49.739,
+      "cost": 43.771
+    },
+    {
+      "id": "l2-2100-west-01",
+      "source": "l2-n014",
+      "target": "l2-n024",
+      "kind": "walk",
+      "lengthPx": 76.026,
+      "cost": 66.903
+    },
+    {
+      "id": "l2-2100-west-02",
+      "source": "l2-n024",
+      "target": "l2-n025",
+      "kind": "walk",
+      "lengthPx": 77.026,
+      "cost": 67.783
+    },
+    {
+      "id": "l2-2100-west-03",
+      "source": "l2-n025",
+      "target": "l2-n026",
+      "kind": "walk",
+      "lengthPx": 72.471,
+      "cost": 63.774
+    },
+    {
+      "id": "l2-2100-west-04",
+      "source": "l2-n026",
+      "target": "l2-n027",
+      "kind": "walk",
+      "lengthPx": 46.141,
+      "cost": 40.604
+    },
+    {
+      "id": "l2-2100-west-05",
+      "source": "l2-n027",
+      "target": "l2-n028",
+      "kind": "walk",
+      "lengthPx": 66.189,
+      "cost": 58.246
+    },
+    {
+      "id": "l2-2100-middle-01",
+      "source": "l2-n020",
+      "target": "l2-n029",
+      "kind": "walk",
+      "lengthPx": 74.431,
+      "cost": 65.499
+    },
+    {
+      "id": "l2-2100-middle-02",
+      "source": "l2-n029",
+      "target": "l2-n030",
+      "kind": "walk",
+      "lengthPx": 76.059,
+      "cost": 66.932
+    },
+    {
+      "id": "l2-2100-middle-03",
+      "source": "l2-n030",
+      "target": "l2-n031",
+      "kind": "walk",
+      "lengthPx": 76.059,
+      "cost": 66.932
+    },
+    {
+      "id": "l2-2100-middle-04",
+      "source": "l2-n031",
+      "target": "l2-n032",
+      "kind": "walk",
+      "lengthPx": 44.418,
+      "cost": 39.088
+    },
+    {
+      "id": "l2-2100-middle-05",
+      "source": "l2-n032",
+      "target": "l2-n028",
+      "kind": "walk",
+      "lengthPx": 15.524,
+      "cost": 13.661
+    },
+    {
+      "id": "l2-2100-south-01",
+      "source": "l2-n028",
+      "target": "l2-n033",
+      "kind": "walk",
+      "lengthPx": 68.308,
+      "cost": 60.111
+    },
+    {
+      "id": "l2-2100-south-02",
+      "source": "l2-n033",
+      "target": "l2-n034",
+      "kind": "walk",
+      "lengthPx": 47.0,
+      "cost": 41.36
+    },
+    {
+      "id": "l2-2100-south-03",
+      "source": "l2-n034",
+      "target": "l2-n035",
+      "kind": "walk",
+      "lengthPx": 42.72,
+      "cost": 37.594
+    },
+    {
+      "id": "l2-2400-east-01",
+      "source": "l2-n012",
+      "target": "l2-n036",
+      "kind": "walk",
+      "lengthPx": 79.246,
+      "cost": 69.737
+    },
+    {
+      "id": "l2-2400-east-02",
+      "source": "l2-n036",
+      "target": "l2-n037",
+      "kind": "walk",
+      "lengthPx": 78.588,
+      "cost": 69.157
+    },
+    {
+      "id": "l2-2400-east-03",
+      "source": "l2-n037",
+      "target": "l2-n038",
+      "kind": "walk",
+      "lengthPx": 78.109,
+      "cost": 68.736
+    },
+    {
+      "id": "l2-2400-east-04",
+      "source": "l2-n038",
+      "target": "l2-n039",
+      "kind": "walk",
+      "lengthPx": 84.865,
+      "cost": 74.681
+    },
+    {
+      "id": "l2-2400-east-05",
+      "source": "l2-n039",
+      "target": "l2-n040",
+      "kind": "walk",
+      "lengthPx": 26.401,
+      "cost": 23.233
+    },
+    {
+      "id": "l2-2400-south-01",
+      "source": "l2-n012",
+      "target": "l2-n041",
+      "kind": "walk",
+      "lengthPx": 70.029,
+      "cost": 61.625
+    },
+    {
+      "id": "l2-2400-south-02",
+      "source": "l2-n041",
+      "target": "l2-n042",
+      "kind": "walk",
+      "lengthPx": 70.349,
+      "cost": 61.907
+    },
+    {
+      "id": "l2-2400-south-03",
+      "source": "l2-n042",
+      "target": "l2-n043",
+      "kind": "walk",
+      "lengthPx": 36.014,
+      "cost": 31.692
+    },
+    {
+      "id": "l2-2400-south-04",
+      "source": "l2-n043",
+      "target": "l2-n044",
+      "kind": "walk",
+      "lengthPx": 50.22,
+      "cost": 44.193
+    },
+    {
+      "id": "l2-stairs-west-approach-01",
+      "source": "l2-n001",
+      "target": "l2-n045",
+      "kind": "walk",
+      "lengthPx": 14.422,
+      "cost": 12.692,
+      "status": "inferred"
+    },
+    {
+      "id": "l2-elevator-blue-approach-01",
+      "source": "l2-n020",
+      "target": "l2-n046",
+      "kind": "walk",
+      "lengthPx": 37.577,
+      "cost": 33.067,
+      "status": "inferred"
+    },
+    {
+      "id": "l2-elevator-south-approach-01",
+      "source": "l2-n033",
+      "target": "l2-n047",
+      "kind": "walk",
+      "lengthPx": 57.706,
+      "cost": 50.781,
+      "status": "inferred"
+    },
+    {
+      "id": "l2-elevator-classroom-approach-01",
+      "source": "l2-n042",
+      "target": "l2-n048",
+      "kind": "walk",
+      "lengthPx": 62.073,
+      "cost": 54.624,
+      "status": "inferred"
+    },
+    {
+      "id": "l3-3300-main-01",
+      "source": "l3-n001",
+      "target": "l3-n002",
+      "kind": "walk",
+      "lengthPx": 96.607,
+      "cost": 85.015
+    },
+    {
+      "id": "l3-3300-main-02",
+      "source": "l3-n002",
+      "target": "l3-n003",
+      "kind": "walk",
+      "lengthPx": 103.325,
+      "cost": 90.926
+    },
+    {
+      "id": "l3-3300-main-03",
+      "source": "l3-n003",
+      "target": "l3-n004",
+      "kind": "walk",
+      "lengthPx": 106.963,
+      "cost": 94.127
+    },
+    {
+      "id": "l3-3300-main-04",
+      "source": "l3-n004",
+      "target": "l3-n005",
+      "kind": "walk",
+      "lengthPx": 97.944,
+      "cost": 86.191
+    },
+    {
+      "id": "l3-3300-main-05",
+      "source": "l3-n005",
+      "target": "l3-n006",
+      "kind": "walk",
+      "lengthPx": 97.576,
+      "cost": 85.867
+    },
+    {
+      "id": "l3-3300-main-06",
+      "source": "l3-n006",
+      "target": "l3-n007",
+      "kind": "walk",
+      "lengthPx": 103.092,
+      "cost": 90.721
+    },
+    {
+      "id": "l3-3300-main-07",
+      "source": "l3-n007",
+      "target": "l3-n008",
+      "kind": "walk",
+      "lengthPx": 91.005,
+      "cost": 80.085
+    },
+    {
+      "id": "l3-3300-main-08",
+      "source": "l3-n008",
+      "target": "l3-n009",
+      "kind": "walk",
+      "lengthPx": 71.449,
+      "cost": 62.875
+    },
+    {
+      "id": "l3-3300-main-09",
+      "source": "l3-n009",
+      "target": "l3-n010",
+      "kind": "walk",
+      "lengthPx": 75.007,
+      "cost": 66.006
+    },
+    {
+      "id": "l3-3300-main-10",
+      "source": "l3-n010",
+      "target": "l3-n011",
+      "kind": "walk",
+      "lengthPx": 71.176,
+      "cost": 62.635
+    },
+    {
+      "id": "l3-3300-main-11",
+      "source": "l3-n011",
+      "target": "l3-n012",
+      "kind": "walk",
+      "lengthPx": 70.349,
+      "cost": 61.907
+    },
+    {
+      "id": "l3-3300-main-12",
+      "source": "l3-n012",
+      "target": "l3-n013",
+      "kind": "walk",
+      "lengthPx": 58.464,
+      "cost": 51.448
+    },
+    {
+      "id": "l3-3300-3200-west-01",
+      "source": "l3-n004",
+      "target": "l3-n014",
+      "kind": "walk",
+      "lengthPx": 64.351,
+      "cost": 56.629
+    },
+    {
+      "id": "l3-3300-3200-west-02",
+      "source": "l3-n014",
+      "target": "l3-n015",
+      "kind": "walk",
+      "lengthPx": 94.032,
+      "cost": 82.748
+    },
+    {
+      "id": "l3-3300-3200-east-01",
+      "source": "l3-n009",
+      "target": "l3-n016",
+      "kind": "walk",
+      "lengthPx": 93.005,
+      "cost": 81.845
+    },
+    {
+      "id": "l3-3300-3200-east-02",
+      "source": "l3-n016",
+      "target": "l3-n017",
+      "kind": "walk",
+      "lengthPx": 91.022,
+      "cost": 80.099
+    },
+    {
+      "id": "l3-3300-3200-east-03",
+      "source": "l3-n017",
+      "target": "l3-n018",
+      "kind": "walk",
+      "lengthPx": 72.111,
+      "cost": 63.458
+    },
+    {
+      "id": "l3-3300-3200-east-04",
+      "source": "l3-n018",
+      "target": "l3-n019",
+      "kind": "walk",
+      "lengthPx": 72.367,
+      "cost": 63.683
+    },
+    {
+      "id": "l3-3300-3200-east-05",
+      "source": "l3-n019",
+      "target": "l3-n020",
+      "kind": "walk",
+      "lengthPx": 70.093,
+      "cost": 61.682
+    },
+    {
+      "id": "l3-3300-3200-east-06",
+      "source": "l3-n020",
+      "target": "l3-n021",
+      "kind": "walk",
+      "lengthPx": 73.926,
+      "cost": 65.055
+    },
+    {
+      "id": "l3-3300-3200-east-07",
+      "source": "l3-n021",
+      "target": "l3-n015",
+      "kind": "walk",
+      "lengthPx": 76.942,
+      "cost": 67.709
+    },
+    {
+      "id": "l3-3200-central-01",
+      "source": "l3-n020",
+      "target": "l3-n024",
+      "kind": "walk",
+      "lengthPx": 42.19,
+      "cost": 37.127
+    },
+    {
+      "id": "l3-3100-west-01",
+      "source": "l3-n015",
+      "target": "l3-n025",
+      "kind": "walk",
+      "lengthPx": 71.12,
+      "cost": 62.585
+    },
+    {
+      "id": "l3-3100-west-02",
+      "source": "l3-n025",
+      "target": "l3-n026",
+      "kind": "walk",
+      "lengthPx": 80.131,
+      "cost": 70.515
+    },
+    {
+      "id": "l3-3100-west-03",
+      "source": "l3-n026",
+      "target": "l3-n027",
+      "kind": "walk",
+      "lengthPx": 76.538,
+      "cost": 67.353
+    },
+    {
+      "id": "l3-3100-west-04",
+      "source": "l3-n027",
+      "target": "l3-n028",
+      "kind": "walk",
+      "lengthPx": 56.08,
+      "cost": 49.351
+    },
+    {
+      "id": "l3-3100-west-05",
+      "source": "l3-n028",
+      "target": "l3-n029",
+      "kind": "walk",
+      "lengthPx": 74.095,
+      "cost": 65.203
+    },
+    {
+      "id": "l3-3100-middle-01",
+      "source": "l3-n021",
+      "target": "l3-n030",
+      "kind": "walk",
+      "lengthPx": 78.772,
+      "cost": 69.319
+    },
+    {
+      "id": "l3-3100-middle-02",
+      "source": "l3-n030",
+      "target": "l3-n031",
+      "kind": "walk",
+      "lengthPx": 78.032,
+      "cost": 68.668
+    },
+    {
+      "id": "l3-3100-middle-03",
+      "source": "l3-n031",
+      "target": "l3-n032",
+      "kind": "walk",
+      "lengthPx": 80.529,
+      "cost": 70.866
+    },
+    {
+      "id": "l3-3100-middle-04",
+      "source": "l3-n032",
+      "target": "l3-n033",
+      "kind": "walk",
+      "lengthPx": 41.049,
+      "cost": 36.123
+    },
+    {
+      "id": "l3-3100-middle-05",
+      "source": "l3-n033",
+      "target": "l3-n029",
+      "kind": "walk",
+      "lengthPx": 13.038,
+      "cost": 11.474
+    },
+    {
+      "id": "l3-3100-south-01",
+      "source": "l3-n029",
+      "target": "l3-n034",
+      "kind": "walk",
+      "lengthPx": 56.462,
+      "cost": 49.687
+    },
+    {
+      "id": "l3-3100-south-02",
+      "source": "l3-n034",
+      "target": "l3-n035",
+      "kind": "walk",
+      "lengthPx": 44.911,
+      "cost": 39.522
+    },
+    {
+      "id": "l3-3100-south-03",
+      "source": "l3-n035",
+      "target": "l3-n036",
+      "kind": "walk",
+      "lengthPx": 41.11,
+      "cost": 36.176
+    },
+    {
+      "id": "l3-3400-west-01",
+      "source": "l3-n011",
+      "target": "l3-n037",
+      "kind": "walk",
+      "lengthPx": 59.076,
+      "cost": 51.987
+    },
+    {
+      "id": "l3-3400-west-02",
+      "source": "l3-n037",
+      "target": "l3-n038",
+      "kind": "walk",
+      "lengthPx": 66.272,
+      "cost": 58.32
+    },
+    {
+      "id": "l3-3400-west-03",
+      "source": "l3-n038",
+      "target": "l3-n039",
+      "kind": "walk",
+      "lengthPx": 62.29,
+      "cost": 54.815
+    },
+    {
+      "id": "l3-3400-west-04",
+      "source": "l3-n039",
+      "target": "l3-n040",
+      "kind": "walk",
+      "lengthPx": 48.415,
+      "cost": 42.605
+    },
+    {
+      "id": "l3-3400-east-01",
+      "source": "l3-n037",
+      "target": "l3-n041",
+      "kind": "walk",
+      "lengthPx": 67.683,
+      "cost": 59.561
+    },
+    {
+      "id": "l3-3400-east-02",
+      "source": "l3-n041",
+      "target": "l3-n042",
+      "kind": "walk",
+      "lengthPx": 60.638,
+      "cost": 53.362
+    },
+    {
+      "id": "l3-3400-east-03",
+      "source": "l3-n042",
+      "target": "l3-n043",
+      "kind": "walk",
+      "lengthPx": 72.732,
+      "cost": 64.004
+    },
+    {
+      "id": "l3-3400-east-04",
+      "source": "l3-n043",
+      "target": "l3-n044",
+      "kind": "walk",
+      "lengthPx": 73.055,
+      "cost": 64.288
+    },
+    {
+      "id": "l3-3400-east-05",
+      "source": "l3-n044",
+      "target": "l3-n045",
+      "kind": "walk",
+      "lengthPx": 49.98,
+      "cost": 43.982
+    },
+    {
+      "id": "l3-3400-loop-01",
+      "source": "l3-n013",
+      "target": "l3-n042",
+      "kind": "walk",
+      "lengthPx": 68.184,
+      "cost": 60.002
+    },
+    {
+      "id": "l3-ccb-binary-bridge-01",
+      "source": "l3-n035",
+      "target": "l3-n046",
+      "kind": "walk",
+      "lengthPx": 62.0,
+      "cost": 54.56
+    },
+    {
+      "id": "l3-ccb-binary-bridge-02",
+      "source": "l3-n046",
+      "target": "l3-n047",
+      "kind": "walk",
+      "lengthPx": 46.011,
+      "cost": 40.49
+    },
+    {
+      "id": "l3-stairs-west-approach-01",
+      "source": "l3-n001",
+      "target": "l3-n048",
+      "kind": "walk",
+      "lengthPx": 12.042,
+      "cost": 10.597,
+      "status": "inferred"
+    },
+    {
+      "id": "l3-elevator-blue-approach-01",
+      "source": "l3-n021",
+      "target": "l3-n049",
+      "kind": "walk",
+      "lengthPx": 40.497,
+      "cost": 35.637,
+      "status": "inferred"
+    },
+    {
+      "id": "l3-elevator-south-approach-01",
+      "source": "l3-n034",
+      "target": "l3-n050",
+      "kind": "walk",
+      "lengthPx": 38.833,
+      "cost": 34.173,
+      "status": "inferred"
+    },
+    {
+      "id": "stairs-west-l1-l2",
+      "source": "l1-stairs-1300-west",
+      "target": "l2-n045",
+      "kind": "stairs",
+      "cost": 65,
+      "status": "inferred"
+    },
+    {
+      "id": "stairs-central-l1-l2",
+      "source": "l1-stairs-atrium",
+      "target": "l2-n023",
+      "kind": "stairs",
+      "cost": 65,
+      "status": "inferred"
+    },
+    {
+      "id": "stairs-south-l1-l2",
+      "source": "l1-stairs-1100-south",
+      "target": "l2-n035",
+      "kind": "stairs",
+      "cost": 65,
+      "status": "inferred"
+    },
+    {
+      "id": "stairs-classroom-east-l1-l2",
+      "source": "l1-stairs-1400-east",
+      "target": "l2-n040",
+      "kind": "stairs",
+      "cost": 65,
+      "status": "inferred"
+    },
+    {
+      "id": "stairs-classroom-west-l1-l2",
+      "source": "l1-stairs-1400-west",
+      "target": "l2-n044",
+      "kind": "stairs",
+      "cost": 65,
+      "status": "inferred"
+    },
+    {
+      "id": "elevator-blue-l1-l2",
+      "source": "l1-elevator-1200",
+      "target": "l2-n046",
+      "kind": "elevator",
+      "cost": 90,
+      "status": "inferred"
+    },
+    {
+      "id": "elevator-south-l1-l2",
+      "source": "l1-elevator-1100-south",
+      "target": "l2-n047",
+      "kind": "elevator",
+      "cost": 90,
+      "status": "inferred"
+    },
+    {
+      "id": "elevator-classroom-l1-l2",
+      "source": "l1-elevator-1400",
+      "target": "l2-n048",
+      "kind": "elevator",
+      "cost": 90,
+      "status": "inferred"
+    },
+    {
+      "id": "stairs-west-l2-l3",
+      "source": "l2-n045",
+      "target": "l3-n048",
+      "kind": "stairs",
+      "cost": 65,
+      "status": "inferred"
+    },
+    {
+      "id": "stairs-central-l2-l3",
+      "source": "l2-n023",
+      "target": "l3-n024",
+      "kind": "stairs",
+      "cost": 65,
+      "status": "inferred"
+    },
+    {
+      "id": "stairs-south-l2-l3",
+      "source": "l2-n035",
+      "target": "l3-n036",
+      "kind": "stairs",
+      "cost": 65,
+      "status": "inferred"
+    },
+    {
+      "id": "stairs-classroom-east-l2-l3",
+      "source": "l2-n040",
+      "target": "l3-n045",
+      "kind": "stairs",
+      "cost": 65,
+      "status": "inferred"
+    },
+    {
+      "id": "elevator-blue-l2-l3",
+      "source": "l2-n046",
+      "target": "l3-n049",
+      "kind": "elevator",
+      "cost": 90,
+      "status": "inferred"
+    },
+    {
+      "id": "elevator-south-l2-l3",
+      "source": "l2-n047",
+      "target": "l3-n050",
+      "kind": "elevator",
+      "cost": 90,
+      "status": "inferred"
+    },
+    {
+      "id": "elevator-classroom-l2-l3",
+      "source": "l2-n048",
+      "target": "l3-n040",
+      "kind": "elevator",
+      "cost": 90,
+      "status": "inferred"
+    }
+  ],
+  "polylines": [
+    {
+      "id": "1300-west",
+      "nodeIds": [
+        "l1-n001",
+        "l1-n007",
+        "l1-n013",
+        "l1-n018",
+        "l1-n024",
+        "l1-n029"
+      ],
+      "floor": 1
+    },
+    {
+      "id": "1300-east",
+      "nodeIds": [
+        "l1-n029",
+        "l1-n035",
+        "l1-n040",
+        "l1-n045",
+        "l1-n050",
+        "l1-n055",
+        "l1-n060",
+        "l1-n066"
+      ],
+      "floor": 1
+    },
+    {
+      "id": "1300-1200-east",
+      "nodeIds": [
+        "l1-n066",
+        "l1-n071",
+        "l1-n077",
+        "l1-n082"
+      ],
+      "floor": 1
+    },
+    {
+      "id": "1300-1200-west",
+      "nodeIds": [
+        "l1-n029",
+        "l1-n087",
+        "l1-n091",
+        "l1-n096"
+      ],
+      "floor": 1
+    },
+    {
+      "id": "1200-west",
+      "nodeIds": [
+        "l1-n096",
+        "l1-n103",
+        "l1-n110"
+      ],
+      "floor": 1
+    },
+    {
+      "id": "1200-east",
+      "nodeIds": [
+        "l1-n110",
+        "l1-n116",
+        "l1-n122",
+        "l1-n082"
+      ],
+      "floor": 1
+    },
+    {
+      "id": "1100-west",
+      "nodeIds": [
+        "l1-n096",
+        "l1-n136",
+        "l1-n142",
+        "l1-n149",
+        "l1-n155"
+      ],
+      "floor": 1
+    },
+    {
+      "id": "1100-south",
+      "nodeIds": [
+        "l1-n155",
+        "l1-n163",
+        "l1-atrium-exit-junction"
+      ],
+      "floor": 1
+    },
+    {
+      "id": "1100-lower",
+      "nodeIds": [
+        "l1-atrium-exit-junction",
+        "l1-n176"
+      ],
+      "floor": 1
+    },
+    {
+      "id": "1400-north",
+      "nodeIds": [
+        "l1-n177",
+        "l1-n183",
+        "l1-n188",
+        "l1-n195",
+        "l1-n200",
+        "l1-classroom-east-landing-approach",
+        "l1-n206"
+      ],
+      "floor": 1
+    },
+    {
+      "id": "1400-west",
+      "nodeIds": [
+        "l1-n177",
+        "l1-n212",
+        "l1-n217",
+        "l1-classroom-south-landing-approach",
+        "l1-n223"
+      ],
+      "floor": 1
+    },
+    {
+      "id": "l1-exit-1300-west",
+      "nodeIds": [
+        "l1-n001",
+        "l1-exit-1300-west"
+      ],
+      "floor": 1
+    },
+    {
+      "id": "l1-exit-1300-east",
+      "nodeIds": [
+        "l1-n066",
+        "l1-exit-1300-east"
+      ],
+      "floor": 1
+    },
+    {
+      "id": "1100-atrium",
+      "nodeIds": [
+        "l1-n110",
+        "l1-atrium-north",
+        "l1-atrium-middle",
+        "l1-atrium-southeast",
+        "l1-atrium-exit-junction"
+      ],
+      "floor": 1
+    },
+    {
+      "id": "l1-exit-atrium-east",
+      "nodeIds": [
+        "l1-atrium-exit-junction",
+        "l1-exit-atrium-east"
+      ],
+      "floor": 1
+    },
+    {
+      "id": "l1-exit-1400-bend",
+      "nodeIds": [
+        "l1-n177",
+        "l1-exit-1400-bend"
+      ],
+      "floor": 1
+    },
+    {
+      "id": "l1-stairs-1300-west-approach",
+      "floor": 1,
+      "nodeIds": [
+        "l1-n001",
+        "l1-stairs-1300-west"
+      ],
+      "status": "inferred"
+    },
+    {
+      "id": "l1-stairs-atrium-approach",
+      "floor": 1,
+      "nodeIds": [
+        "l1-atrium-southeast",
+        "l1-stairs-atrium"
+      ],
+      "status": "inferred"
+    },
+    {
+      "id": "l1-stairs-1100-south-approach",
+      "floor": 1,
+      "nodeIds": [
+        "l1-n176",
+        "l1-stairs-1100-south"
+      ],
+      "status": "inferred"
+    },
+    {
+      "id": "l1-stairs-1400-east-approach",
+      "floor": 1,
+      "nodeIds": [
+        "l1-classroom-east-landing-approach",
+        "l1-stairs-1400-east"
+      ],
+      "status": "inferred"
+    },
+    {
+      "id": "l1-stairs-1400-west-approach",
+      "floor": 1,
+      "nodeIds": [
+        "l1-classroom-south-landing-approach",
+        "l1-stairs-1400-west"
+      ],
+      "status": "inferred"
+    },
+    {
+      "id": "l1-elevator-1200-approach",
+      "floor": 1,
+      "nodeIds": [
+        "l1-n110",
+        "l1-elevator-1200"
+      ],
+      "status": "inferred"
+    },
+    {
+      "id": "l1-elevator-1100-south-approach",
+      "floor": 1,
+      "nodeIds": [
+        "l1-atrium-exit-junction",
+        "l1-elevator-1100-south"
+      ],
+      "status": "inferred"
+    },
+    {
+      "id": "l1-elevator-1400-approach",
+      "floor": 1,
+      "nodeIds": [
+        "l1-classroom-south-landing-approach",
+        "l1-elevator-1400"
+      ],
+      "status": "inferred"
+    },
+    {
+      "id": "l2-2300-main",
+      "floor": 2,
+      "nodeIds": [
+        "l2-n001",
+        "l2-n002",
+        "l2-n003",
+        "l2-n004",
+        "l2-n005",
+        "l2-n006",
+        "l2-n007",
+        "l2-n008",
+        "l2-n009",
+        "l2-n010",
+        "l2-n011",
+        "l2-n012"
+      ]
+    },
+    {
+      "id": "l2-2300-2200-west",
+      "floor": 2,
+      "nodeIds": [
+        "l2-n004",
+        "l2-n013",
+        "l2-n014"
+      ]
+    },
+    {
+      "id": "l2-2300-2200-east",
+      "floor": 2,
+      "nodeIds": [
+        "l2-n009",
+        "l2-n015",
+        "l2-n016",
+        "l2-n017",
+        "l2-n018",
+        "l2-n019",
+        "l2-n020",
+        "l2-n014"
+      ]
+    },
+    {
+      "id": "l2-2200-central",
+      "floor": 2,
+      "nodeIds": [
+        "l2-n019",
+        "l2-n021",
+        "l2-n022",
+        "l2-n023"
+      ]
+    },
+    {
+      "id": "l2-2100-west",
+      "floor": 2,
+      "nodeIds": [
+        "l2-n014",
+        "l2-n024",
+        "l2-n025",
+        "l2-n026",
+        "l2-n027",
+        "l2-n028"
+      ]
+    },
+    {
+      "id": "l2-2100-middle",
+      "floor": 2,
+      "nodeIds": [
+        "l2-n020",
+        "l2-n029",
+        "l2-n030",
+        "l2-n031",
+        "l2-n032",
+        "l2-n028"
+      ]
+    },
+    {
+      "id": "l2-2100-south",
+      "floor": 2,
+      "nodeIds": [
+        "l2-n028",
+        "l2-n033",
+        "l2-n034",
+        "l2-n035"
+      ]
+    },
+    {
+      "id": "l2-2400-east",
+      "floor": 2,
+      "nodeIds": [
+        "l2-n012",
+        "l2-n036",
+        "l2-n037",
+        "l2-n038",
+        "l2-n039",
+        "l2-n040"
+      ]
+    },
+    {
+      "id": "l2-2400-south",
+      "floor": 2,
+      "nodeIds": [
+        "l2-n012",
+        "l2-n041",
+        "l2-n042",
+        "l2-n043",
+        "l2-n044"
+      ]
+    },
+    {
+      "id": "l2-stairs-west-approach",
+      "floor": 2,
+      "nodeIds": [
+        "l2-n001",
+        "l2-n045"
+      ],
+      "status": "inferred"
+    },
+    {
+      "id": "l2-elevator-blue-approach",
+      "floor": 2,
+      "nodeIds": [
+        "l2-n020",
+        "l2-n046"
+      ],
+      "status": "inferred"
+    },
+    {
+      "id": "l2-elevator-south-approach",
+      "floor": 2,
+      "nodeIds": [
+        "l2-n033",
+        "l2-n047"
+      ],
+      "status": "inferred"
+    },
+    {
+      "id": "l2-elevator-classroom-approach",
+      "floor": 2,
+      "nodeIds": [
+        "l2-n042",
+        "l2-n048"
+      ],
+      "status": "inferred"
+    },
+    {
+      "id": "l3-3300-main",
+      "floor": 3,
+      "nodeIds": [
+        "l3-n001",
+        "l3-n002",
+        "l3-n003",
+        "l3-n004",
+        "l3-n005",
+        "l3-n006",
+        "l3-n007",
+        "l3-n008",
+        "l3-n009",
+        "l3-n010",
+        "l3-n011",
+        "l3-n012",
+        "l3-n013"
+      ]
+    },
+    {
+      "id": "l3-3300-3200-west",
+      "floor": 3,
+      "nodeIds": [
+        "l3-n004",
+        "l3-n014",
+        "l3-n015"
+      ]
+    },
+    {
+      "id": "l3-3300-3200-east",
+      "floor": 3,
+      "nodeIds": [
+        "l3-n009",
+        "l3-n016",
+        "l3-n017",
+        "l3-n018",
+        "l3-n019",
+        "l3-n020",
+        "l3-n021",
+        "l3-n015"
+      ]
+    },
+    {
+      "id": "l3-3200-central",
+      "floor": 3,
+      "nodeIds": [
+        "l3-n020",
+        "l3-n024"
+      ]
+    },
+    {
+      "id": "l3-3100-west",
+      "floor": 3,
+      "nodeIds": [
+        "l3-n015",
+        "l3-n025",
+        "l3-n026",
+        "l3-n027",
+        "l3-n028",
+        "l3-n029"
+      ]
+    },
+    {
+      "id": "l3-3100-middle",
+      "floor": 3,
+      "nodeIds": [
+        "l3-n021",
+        "l3-n030",
+        "l3-n031",
+        "l3-n032",
+        "l3-n033",
+        "l3-n029"
+      ]
+    },
+    {
+      "id": "l3-3100-south",
+      "floor": 3,
+      "nodeIds": [
+        "l3-n029",
+        "l3-n034",
+        "l3-n035",
+        "l3-n036"
+      ]
+    },
+    {
+      "id": "l3-3400-west",
+      "floor": 3,
+      "nodeIds": [
+        "l3-n011",
+        "l3-n037",
+        "l3-n038",
+        "l3-n039",
+        "l3-n040"
+      ]
+    },
+    {
+      "id": "l3-3400-east",
+      "floor": 3,
+      "nodeIds": [
+        "l3-n037",
+        "l3-n041",
+        "l3-n042",
+        "l3-n043",
+        "l3-n044",
+        "l3-n045"
+      ]
+    },
+    {
+      "id": "l3-3400-loop",
+      "floor": 3,
+      "nodeIds": [
+        "l3-n013",
+        "l3-n042"
+      ]
+    },
+    {
+      "id": "l3-ccb-binary-bridge",
+      "floor": 3,
+      "nodeIds": [
+        "l3-n035",
+        "l3-n046",
+        "l3-n047"
+      ]
+    },
+    {
+      "id": "l3-stairs-west-approach",
+      "floor": 3,
+      "nodeIds": [
+        "l3-n001",
+        "l3-n048"
+      ],
+      "status": "inferred"
+    },
+    {
+      "id": "l3-elevator-blue-approach",
+      "floor": 3,
+      "nodeIds": [
+        "l3-n021",
+        "l3-n049"
+      ],
+      "status": "inferred"
+    },
+    {
+      "id": "l3-elevator-south-approach",
+      "floor": 3,
+      "nodeIds": [
+        "l3-n034",
+        "l3-n050"
+      ],
+      "status": "inferred"
+    }
+  ],
+  "landmarks": [
+    {
+      "label": "1300s west exit",
+      "nodeId": "l1-exit-1300-west",
+      "kind": "exit",
+      "floor": 1
+    },
+    {
+      "label": "1300s east exit",
+      "nodeId": "l1-exit-1300-east",
+      "kind": "exit",
+      "floor": 1
+    },
+    {
+      "label": "Atrium east exit",
+      "nodeId": "l1-exit-atrium-east",
+      "kind": "exit",
+      "floor": 1
+    },
+    {
+      "label": "1100s south exit",
+      "nodeId": "l1-n176",
+      "kind": "exit",
+      "floor": 1
+    },
+    {
+      "label": "1400s bend exit",
+      "nodeId": "l1-exit-1400-bend",
+      "kind": "exit",
+      "floor": 1
+    },
+    {
+      "label": "1400s east exit",
+      "nodeId": "l1-n206",
+      "kind": "exit",
+      "floor": 1
+    },
+    {
+      "label": "1400s southwest exit",
+      "nodeId": "l1-n223",
+      "kind": "exit",
+      "floor": 1
+    },
+    {
+      "label": "CCB Binary Bridge",
+      "floor": 3,
+      "nodeId": "l3-n047",
+      "kind": "exit"
+    }
+  ],
+  "reviewNotes": [
+    "The central stairs follow the user-provided Level 1\u20132\u20133 sequence. The Level 3 landing is beside the 3200s elevator; its exact schematic position is approximate.",
+    "Other vertical pairings and marked corridor approaches are inferred from the directories. The west classroom stair is paired only between Levels 1 and 2, where the symbol is visible.",
+    "Routing cost is in approximate schematic units, including placeholder inter-floor costs. Use cost for cross-floor routing.",
+    "The Level 2 Binary Bridge marking is not an exit in this model. The Level 3 bridge is the only upper-floor exit."
+  ]
+}

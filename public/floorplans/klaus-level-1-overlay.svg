@@ -7,32 +7,32 @@
 <polyline points="268,185 298.33,228.33 320.0,263.5 347,309"/>
 <polyline points="347,309 406.0,282.0 474,254"/>
 <polyline points="474,254 535.0,236.5 589.5,225.0 653,219"/>
-<polyline points="474,254 482,286"/>
 <polyline points="347,309 376.5,359.0 409.8,413.0 445,473 478,524"/>
-<polyline points="478,524 535.0,492.0 602,473"/>
-<polyline points="602,473 602,532"/>
-<polyline points="754,135 813,142 865.0,151.5 930.25,169.25 977.5,187.0 1034,211"/>
-<polyline points="754,135 747,193 742.67,243.0 739,300"/>
-<polyline points="57,385 53,388"/>
-<polyline points="645,54 657,53"/>
-<polyline points="482,286 513,325 545,368 575,414 615,453 602,473"/>
-<polyline points="615,453 664,453"/></g>
+<polyline points="478,524 535.0,492.0 608.5,463.0"/>
+<polyline points="608.5,463.0 602,550"/>
+<polyline points="754,135 813,142 865.0,151.5 930.25,169.25 977.5,187.0 1058,221"/>
+<polyline points="754,135 747,193 742.67,243.0 737,328"/>
+<polyline points="57,385 41,404"/>
+<polyline points="645,54 679,53"/>
+<polyline points="474,254 513,325 545,368 575,414 608.5,463.0"/>
+<polyline points="608.5,463.0 690,453"/>
+<polyline points="754,135 711,135"/></g>
 <g fill="none" stroke="#59edf4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><polyline points="57,385 92.5,339.5 136,294 174.25,260.0 223.75,218.0 268,185"/>
 <polyline points="268,185 316.5,154.5 364.75,128.25 418,104 472.0,85.0 527.5,71.0 583.75,60.75 645,54"/>
 <polyline points="645,54 647.67,108.67 650.0,166.5 653,219"/>
 <polyline points="268,185 298.33,228.33 320.0,263.5 347,309"/>
 <polyline points="347,309 406.0,282.0 474,254"/>
 <polyline points="474,254 535.0,236.5 589.5,225.0 653,219"/>
-<polyline points="474,254 482,286"/>
 <polyline points="347,309 376.5,359.0 409.8,413.0 445,473 478,524"/>
-<polyline points="478,524 535.0,492.0 602,473"/>
-<polyline points="602,473 602,532"/>
-<polyline points="754,135 813,142 865.0,151.5 930.25,169.25 977.5,187.0 1034,211"/>
-<polyline points="754,135 747,193 742.67,243.0 739,300"/>
-<polyline points="57,385 53,388"/>
-<polyline points="645,54 657,53"/>
-<polyline points="482,286 513,325 545,368 575,414 615,453 602,473"/>
-<polyline points="615,453 664,453"/></g>
+<polyline points="478,524 535.0,492.0 608.5,463.0"/>
+<polyline points="608.5,463.0 602,550"/>
+<polyline points="754,135 813,142 865.0,151.5 930.25,169.25 977.5,187.0 1058,221"/>
+<polyline points="754,135 747,193 742.67,243.0 737,328"/>
+<polyline points="57,385 41,404"/>
+<polyline points="645,54 679,53"/>
+<polyline points="474,254 513,325 545,368 575,414 608.5,463.0"/>
+<polyline points="608.5,463.0 690,453"/>
+<polyline points="754,135 711,135"/></g>
 <g stroke="#142437" stroke-width="1.3"><circle cx="57" cy="385" r="3.2" fill="white"><title>l1-n001</title></circle>
 <circle cx="92.5" cy="339.5" r="3.2" fill="white"><title>l1-n007</title></circle>
 <circle cx="136" cy="294" r="3.2" fill="white"><title>l1-n013</title></circle>
@@ -56,38 +56,35 @@
 <circle cx="474" cy="254" r="3.2" fill="white"><title>l1-n110</title></circle>
 <circle cx="535.0" cy="236.5" r="3.2" fill="white"><title>l1-n116</title></circle>
 <circle cx="589.5" cy="225.0" r="3.2" fill="white"><title>l1-n122</title></circle>
-<circle cx="482" cy="286" r="3.2" fill="white"><title>l1-n131</title></circle>
 <circle cx="376.5" cy="359.0" r="3.2" fill="white"><title>l1-n136</title></circle>
 <circle cx="409.8" cy="413.0" r="3.2" fill="white"><title>l1-n142</title></circle>
 <circle cx="445" cy="473" r="3.2" fill="white"><title>l1-n149</title></circle>
 <circle cx="478" cy="524" r="3.2" fill="white"><title>l1-n155</title></circle>
 <circle cx="535.0" cy="492.0" r="3.2" fill="white"><title>l1-n163</title></circle>
-<circle cx="602" cy="473" r="3.2" fill="white"><title>l1-n170</title></circle>
-<circle cx="602" cy="532" r="4.5" fill="#ffd260"><title>l1-n176</title></circle>
-<circle cx="754" cy="135" r="4.5" fill="#ffd260"><title>l1-n177</title></circle>
+<circle cx="602" cy="550" r="4.5" fill="#ffd260"><title>l1-n176</title></circle>
+<circle cx="754" cy="135" r="3.2" fill="white"><title>l1-n177</title></circle>
 <circle cx="813" cy="142" r="3.2" fill="white"><title>l1-n183</title></circle>
 <circle cx="865.0" cy="151.5" r="3.2" fill="white"><title>l1-n188</title></circle>
 <circle cx="930.25" cy="169.25" r="3.2" fill="white"><title>l1-n195</title></circle>
 <circle cx="977.5" cy="187.0" r="3.2" fill="white"><title>l1-n200</title></circle>
-<circle cx="1034" cy="211" r="4.5" fill="#ffd260"><title>l1-n206</title></circle>
+<circle cx="1058" cy="221" r="4.5" fill="#ffd260"><title>l1-n206</title></circle>
 <circle cx="747" cy="193" r="3.2" fill="white"><title>l1-n212</title></circle>
 <circle cx="742.67" cy="243.0" r="3.2" fill="white"><title>l1-n217</title></circle>
-<circle cx="739" cy="300" r="4.5" fill="#ffd260"><title>l1-n223</title></circle>
-<circle cx="53" cy="388" r="4.5" fill="#ffd260"><title>l1-exit-1300-west</title></circle>
-<circle cx="657" cy="53" r="4.5" fill="#ffd260"><title>l1-exit-1300-east</title></circle>
+<circle cx="737" cy="328" r="4.5" fill="#ffd260"><title>l1-n223</title></circle>
+<circle cx="41" cy="404" r="4.5" fill="#ffd260"><title>l1-exit-1300-west</title></circle>
+<circle cx="679" cy="53" r="4.5" fill="#ffd260"><title>l1-exit-1300-east</title></circle>
 <circle cx="513" cy="325" r="3.2" fill="white"><title>l1-atrium-north</title></circle>
 <circle cx="545" cy="368" r="3.2" fill="white"><title>l1-atrium-middle</title></circle>
 <circle cx="575" cy="414" r="3.2" fill="white"><title>l1-atrium-southeast</title></circle>
-<circle cx="615" cy="453" r="3.2" fill="white"><title>l1-atrium-exit-junction</title></circle>
-<circle cx="664" cy="453" r="4.5" fill="#ffd260"><title>l1-exit-atrium-east</title></circle>
+<circle cx="608.5" cy="463.0" r="3.2" fill="white"><title>l1-atrium-exit-junction</title></circle>
+<circle cx="690" cy="453" r="4.5" fill="#ffd260"><title>l1-exit-atrium-east</title></circle>
 <circle cx="113" cy="407" r="4.5" fill="#f0b8ff"><title>l1-stairs-1300-west</title></circle>
-<circle cx="700" cy="53" r="4.5" fill="#f0b8ff"><title>l1-stairs-1300-east</title></circle>
 <circle cx="565" cy="444" r="4.5" fill="#f0b8ff"><title>l1-stairs-atrium</title></circle>
 <circle cx="624" cy="500" r="4.5" fill="#f0b8ff"><title>l1-stairs-1100-south</title></circle>
 <circle cx="775" cy="294" r="4.5" fill="#f0b8ff"><title>l1-stairs-1400-west</title></circle>
 <circle cx="1045" cy="180" r="4.5" fill="#f0b8ff"><title>l1-stairs-1400-east</title></circle>
-<circle cx="672" cy="35" r="4.5" fill="#f0b8ff"><title>l1-elevator-1300-east</title></circle>
 <circle cx="445" cy="299" r="4.5" fill="#f0b8ff"><title>l1-elevator-1200</title></circle>
 <circle cx="583" cy="493" r="4.5" fill="#f0b8ff"><title>l1-elevator-1100-south</title></circle>
-<circle cx="800" cy="252" r="4.5" fill="#f0b8ff"><title>l1-elevator-1400</title></circle></g>
+<circle cx="800" cy="252" r="4.5" fill="#f0b8ff"><title>l1-elevator-1400</title></circle>
+<circle cx="711" cy="135" r="4.5" fill="#ffd260"><title>l1-exit-1400-bend</title></circle></g>
 </svg>
