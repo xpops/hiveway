@@ -14,7 +14,7 @@ A browser demo that reroutes users through Georgia Tech’s Klaus Advanced Compu
 
 ## What the demo does
 
-1. **Locate the start.** The user selects their current floor and grants location permission. The app projects the reported latitude and longitude onto that floor's map, then highlights the projected point on the closest corridor as the estimated start. Tap a corridor to set or correct the start.
+1. **Locate the start.** Select **Navigate**, choose your current floor, and grant location permission. The app projects the reported latitude and longitude onto that floor's map, then highlights the projected point on the closest corridor as the estimated start. Tap a corridor to set or correct the start.
 2. **Route to a modeled exit.** Show the path across floors and mark stairs where the user changes levels. Choose the reachable simulation endpoint with the lowest graph cost.
 3. **Simulate a closure.** Pick a preset or block a graph segment. Rerun the search with closed corridors and elevator transitions excluded. Clear the displayed path if no eligible endpoint remains reachable.
 
@@ -68,7 +68,7 @@ npm ci
 npm run dev
 ```
 
-Open the Local URL printed by Vite. Select **Corridor closure** to reroute from the default start. **Exits unavailable** demonstrates the no-route state. To place a custom closure, select **Edit closures on map** and tap a corridor. Build with `npm run build` and serve the build locally with `npm run preview`.
+Open the Local URL printed by Vite. Select **Navigate** and choose your current floor to calculate an initial route. If location is unavailable, tap a corridor on that floor. Select **Corridor closure** to recalculate the route around a blocked segment. **Exits unavailable** demonstrates the no-route state. To place a custom closure, select **Edit closures on map** and tap a corridor. Build with `npm run build` and serve the build locally with `npm run preview`.
 
 ## Build order and demo checks
 
