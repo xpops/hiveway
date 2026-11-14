@@ -1,6 +1,6 @@
 # HiveWay
 
-A browser demo that shows routes to modeled exits in Georgia Tech’s Klaus Advanced Computing Building.
+A browser demo that shows routes to modeled exits in Georgia Tech’s Klaus Advanced Computing Building and reroutes as simulated fire spreads.
 
 > Draft for team review · Georgia Tech Campus Solutions Challenge · Engineering Track
 
@@ -9,13 +9,15 @@ A browser demo that shows routes to modeled exits in Georgia Tech’s Klaus Adva
 | Status | Scope |
 | --- | --- |
 | Available | SVG maps for levels 1–3, a level 1 graph overlay for inspection, and one combined routing graph with 152 nodes and 170 edges. |
-| Implemented demo | Exit routing, manual floor selection, an estimated start node from device geolocation, and a route overlay. Live location accuracy still needs a test inside Klaus. |
+| Implemented demo | Exit routing, manual floor selection, a device or map-selected starting position, and simulated fire spread with rerouting. Live location accuracy still needs a test inside Klaus. |
 | Later | Room-to-room wayfinding after we map room entrances to graph nodes using a room-level plan or a manual survey. |
 
 ## What the demo does
 
-1. **Locate the start.** Select **Navigate**, choose your current floor, and grant location permission. The app projects the reported latitude and longitude onto that floor's map, then highlights the projected point on the closest corridor as the estimated start. Tap a corridor to set or correct the start.
-2. **Route to a modeled exit.** Show the path across floors and mark stairs where the user changes levels. Choose the reachable simulation endpoint with the lowest graph cost.
+1. **Locate the start.** Select **Navigate**, choose your current floor, and grant location permission. The app projects the reported latitude and longitude onto that floor's map, and shows it as a blue marker. A dashed line connects it to the nearest corridor node, where routing begins. Tap the map to set or correct your location.
+2. **Route to a modeled exit.** Show the path across floors and mark stairs where the user changes levels. Choose the reachable modeled exit with the lowest graph cost. Routes can use stairs between floors and exclude elevators.
+3. **Run the fire simulation.** Select **Fire simulation** to ignite a random corridor node. Every five seconds, fire spreads one step along connected walking edges on the same floor. The map marks burning nodes and shades a corridor segment once both endpoints are burning. The **Fire spread** panel shows the ignition floor and node, elapsed simulation time, and spread progress.
+4. **Check the reroute.** When fire blocks the displayed route, the app recomputes it from the fixed starting point. If no path remains, the map clears the route and displays **No reachable exit**. Select **Reset simulation** to clear the fire and restore the initial route.
 
 The CCB Binary Bridge is a simulation endpoint that connects to another building.
 
@@ -28,10 +30,11 @@ The CCB Binary Bridge is a simulation endpoint that connects to another building
 | Map rendering | SVG | Render the base map and route overlay in the same floor-specific `viewBox` so they scale together. |
 | Map data | JSON | Load the three-floor graph, including walk, stair, and elevator edges, plus landmarks. |
 | Routing | Dijkstra in TypeScript | Find a minimum-cost path from the start to an eligible simulation exit. |
+| Fire simulation | TypeScript in the browser | Spread fire across the corridor graph and recalculate affected routes. |
 
 ## Local calculation and offline access
 
-The browser runs the TypeScript routing logic as JavaScript on the user's phone or laptop. Static hosting delivers the app files. After the browser loads the bundle, graph, and maps, route updates run on the device with no API calls.
+The browser runs the TypeScript routing logic as JavaScript on the user's phone or laptop. Static hosting delivers the app files. After the browser loads the bundle, graph, and maps, fire spread and route updates run on the device with no API calls.
 
 For a laptop demo, serve the built app on `localhost`. The server reads files from disk and the browser computes routes. For offline reopening on phones, a proposed upgrade is to serve the build over HTTPS and use a service worker to cache the app shell, scripts, styles, all three floor maps, and graph during an initial online visit. Verify by turning off connectivity and reloading after the cache is ready. Location availability and accuracy depend on the device, so keep map selection available offline.
 
@@ -58,9 +61,10 @@ README.md
 
 The React demo starts at `index.html` and `src/main.tsx`.
 
-- `src/App.tsx` connects the map and starting position.
+- `src/App.tsx` connects the map, starting position, and simulation controls.
 - `src/components/FloorPickerDialog.tsx` displays Navigate and prompts for the current floor.
-- `src/components/FloorMap.tsx` renders the floor map and route overlays.
+- `src/components/FloorMap.tsx` renders the floor map, position markers, route, and fire overlays.
+- `src/simulation/fireSimulation.ts` advances the fire and checks whether the current route needs to be recalculated.
 - `src/location/useStartLocation.ts` requests device location, converts it with `coordinates.ts`, and snaps it to a corridor on the chosen floor.
 
 The team's original coordinate test lives in `legacy/test/`.
@@ -72,14 +76,15 @@ npm ci
 npm run dev
 ```
 
-Open the Local URL printed by Vite. Select **Navigate** and choose your current floor to calculate an initial route. If location is unavailable, tap a corridor on that floor. Build with `npm run build` and serve the build locally with `npm run preview`.
+Open the Local URL printed by Vite. Select **Navigate** and choose your current floor to calculate an initial route. If location is unavailable, select your location on that floor’s map. Then select **Fire simulation** and use the floor selector to view the ignition floor shown in **Fire spread**. Build with `npm run build` and serve the build locally with `npm run preview`.
 
 ## Build order and demo checks
 
 1. Render the three floors and check that the route overlay stays aligned as the map resizes.
 2. Calibrate a demo floor and compare several reported locations with known corridor waypoints. Check that selecting a different floor limits snapping to that floor and that a missing fix can be handled with a map tap.
 3. Start from a node on an upper floor and route to a modeled exit. Verify that the route crosses floors as needed and skips elevators.
-4. Once the offline cache is implemented, reload on a phone in airplane mode and test an exit route with map selection.
+4. Start the simulation and inspect the ignition floor. Check that fire spreads every five seconds, the route stays in place while the fire is off-route, and an affected route is replaced or cleared. Reset the simulation to restore the initial route.
+5. Once the offline cache is implemented, reload on a phone in airplane mode and test an exit route with map selection.
 
 ## Decisions for team review
 
