@@ -1,15 +1,16 @@
 import type { MouseEvent } from 'react';
-import { edges, floors, nodes, type Point, type Route, type Snap } from '../routing/routing';
+import { floors, nodes, segmentsByFloor, type Point, type Route, type Snap } from '../routing/routing';
+import type { FireSimulation } from '../simulation/fireSimulation';
 
 type Props = {
   floor: (typeof floors)[number];
   route: Route | null;
   start: Snap | null;
-  closedEdges: ReadonlySet<string>;
+  simulation: FireSimulation | null;
   onPick: (point: Point) => void;
 };
 
-export function FloorMap({ floor, route, start, closedEdges, onPick }: Props) {
+export function FloorMap({ floor, route, start, simulation, onPick }: Props) {
   const { width, height } = floor.coordinateSpace;
   const points = route?.points ?? [];
   const path = points.map((point, index) => {
@@ -32,19 +33,17 @@ export function FloorMap({ floor, route, start, closedEdges, onPick }: Props) {
 
   return (
     <svg className="floor-map" viewBox={`0 0 ${width} ${height}`} onClick={selectPoint}
-      role="img" aria-label={`Klaus level ${floor.floor} map. Tap a corridor to set your start.`}>
+      role="img" aria-label={`Klaus level ${floor.floor} map. Select your location on the map.`}>
       <image href={`${import.meta.env.BASE_URL}${floor.mapUrl.slice(1)}`} width={width} height={height} />
+      <g className="fire-spread">
+        {simulation && (segmentsByFloor.get(floor.floor) ?? []).map(({ edgeId, start, end }) =>
+          simulation.burning.has(start.id) && simulation.burning.has(end.id) && (
+            <line key={edgeId} className="fire-segment" x1={start.x} y1={start.y} x2={end.x} y2={end.y} />
+          ),
+        )}
+      </g>
       <path className="route-halo" d={path} />
       <path className="route-line" d={path} />
-      {[...closedEdges].map(id => {
-        const edge = edges.get(id);
-        if (!edge) return null;
-        const from = nodes.get(edge.source)!;
-        const to = nodes.get(edge.target)!;
-        return from.floor === floor.floor && to.floor === floor.floor ? (
-          <line key={id} className="closure-line" x1={from.x} y1={from.y} x2={to.x} y2={to.y} />
-        ) : null;
-      })}
       {transitions.map(({ from, to }, index) => from.floor === floor.floor && (
         <g key={index} transform={`translate(${from.x} ${from.y})`}>
           <circle className="step-marker" r="12" />
@@ -52,7 +51,18 @@ export function FloorMap({ floor, route, start, closedEdges, onPick }: Props) {
         </g>
       ))}
       {exit && <circle className="exit-marker" cx={exit.x} cy={exit.y} r="11" />}
-      {start?.floor === floor.floor && <circle className="start-marker" cx={start.x} cy={start.y} r="10" />}
+      {start?.floor === floor.floor && (
+        <g>
+          <line className="start-link" x1={start.inputPoint.x} y1={start.inputPoint.y} x2={start.x} y2={start.y} />
+          <circle className="corridor-start-marker" cx={start.x} cy={start.y} r="6" />
+          <circle className="start-marker" cx={start.inputPoint.x} cy={start.inputPoint.y} r="9" />
+        </g>
+      )}
+      {simulation && [...simulation.burning].map(id => {
+        const node = nodes.get(id);
+        if (node?.floor !== floor.floor) return null;
+        return <circle key={id} className="fire-marker" cx={node.x} cy={node.y} r={id === simulation.ignition ? 9 : 6} />;
+      })}
     </svg>
   );
 }

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { findClosestCorridor, floors, type Snap } from '../routing/routing';
+import { findClosestCorridorNode, floors, type Snap } from '../routing/routing';
 import { toKlausFloorPoint } from './coordinates';
 
 export function useStartLocation() {
@@ -8,7 +8,7 @@ export function useStartLocation() {
 
   function requestLocation(selectedFloor: number, onStart: (snap: Snap, source: string) => void) {
     if (!navigator.geolocation) {
-      setLocationStatus('Location is unavailable. Tap a corridor to set your start.');
+      setLocationStatus('Location is unavailable. Select your location on the map.');
       return;
     }
     const level = floors.find(item => item.floor === selectedFloor)!;
@@ -19,12 +19,12 @@ export function useStartLocation() {
       const point = toKlausFloorPoint(coords.latitude, coords.longitude, level.floor);
       const { width, height } = level.coordinateSpace;
       if (point.x < 0 || point.y < 0 || point.x > width || point.y > height) {
-        setLocationStatus('The location estimate is outside this map. Tap a corridor to set your start.');
+        setLocationStatus('The location estimate is outside this map. Select your location on the map.');
         return;
       }
-      const snapped = findClosestCorridor(point, level.floor);
+      const snapped = findClosestCorridorNode(point, level.floor);
       if (!snapped) {
-        setLocationStatus('No corridor found. Tap a corridor to set your start.');
+        setLocationStatus('We couldn’t place your location on this floor. Select your location on the map.');
         return;
       }
       onStart(snapped, `Device location · ±${Math.ceil(coords.accuracy)} m`);
@@ -33,7 +33,7 @@ export function useStartLocation() {
       }
     }, () => {
       setLocating(false);
-      setLocationStatus('Could not get device location. Tap a corridor to set your start.');
+      setLocationStatus('We couldn’t find your location. Select your location on the map.');
     }, { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 });
   }
 

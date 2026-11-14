@@ -1,30 +1,30 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { FloorMap } from './components/FloorMap';
 import { FloorPickerDialog } from './components/FloorPickerDialog';
 import { useStartLocation } from './location/useStartLocation';
-import { exitLabels, findClosestCorridor, floors, type Point, type Snap } from './routing/routing';
-import { calculateEvacuation, type Scenario } from './simulation/evacuationEngine';
-
-const scenarios: { id: Scenario; name: string; detail: string }[] = [
-  { id: 'open', name: 'Clear corridors', detail: 'Compare the route before a closure.' },
-  { id: 'closure', name: 'Corridor closure', detail: 'Block a corridor on the initial route.' },
-  { id: 'unreachable', name: 'Exits unavailable', detail: 'Mark every modeled exit unavailable.' },
-];
+import { exitLabels, findClosestCorridorNode, findNearestExit, floors, nodes, type Point, type Snap } from './routing/routing';
+import { spreadFire, spreadIntervalMs, startFire, type FireSimulation } from './simulation/fireSimulation';
 
 export function App() {
   const [activeFloor, setActiveFloor] = useState(1);
   const [startFloor, setStartFloor] = useState<number | null>(null);
   const [start, setStart] = useState<Snap | null>(null);
   const [source, setSource] = useState('');
+  const [simulation, setSimulation] = useState<FireSimulation | null>(null);
   const { locating, locationStatus, requestLocation, clearLocationStatus } = useStartLocation();
-  const [scenario, setScenario] = useState<Scenario>('open');
-  const [manuallyClosed, setManuallyClosed] = useState<Set<string>>(new Set());
-  const [editClosure, setEditClosure] = useState(false);
   const floor = floors.find(item => item.floor === activeFloor)!;
-  const { route, closedEdges, detourClosure } = useMemo(
-    () => calculateEvacuation(start, scenario, manuallyClosed),
-    [start, scenario, manuallyClosed],
-  );
+  const initialRoute = useMemo(() => start ? findNearestExit(start) : null, [start]);
+  const route = simulation ? simulation.route : initialRoute;
+  const spreading = Boolean(simulation?.frontier.size);
+  const ignition = simulation ? nodes.get(simulation.ignition) : undefined;
+
+  useEffect(() => {
+    if (!start || !spreading) return;
+    const timer = window.setInterval(() => {
+      setSimulation(current => current?.frontier.size ? spreadFire(start, current) : current);
+    }, spreadIntervalMs);
+    return () => window.clearInterval(timer);
+  }, [start, spreading]);
   const routeFloors = route?.points.filter((point, index, points) => point.floor !== points[index - 1]?.floor)
     .map(point => point.floor) ?? [];
 
@@ -37,34 +37,17 @@ export function App() {
   }
 
   function locate(selectedFloor: number) {
+    setSimulation(null);
     setStart(null);
     setStartFloor(selectedFloor);
     setActiveFloor(selectedFloor);
-    setEditClosure(false);
     requestLocation(selectedFloor, placeStart);
   }
 
   function pickPoint(point: Point) {
-    if (locating || (!editClosure && (startFloor === null || activeFloor !== startFloor))) return;
-    const snapped = findClosestCorridor(point, activeFloor);
-    if (!snapped) return;
-    if (editClosure) {
-      if (snapped.distancePx > 40) return;
-      setManuallyClosed(previous => {
-        const next = new Set(previous);
-        if (next.has(snapped.segment.edgeId)) next.delete(snapped.segment.edgeId);
-        else next.add(snapped.segment.edgeId);
-        return next;
-      });
-    } else {
-      placeStart(snapped, 'Map-selected starting point');
-    }
-  }
-
-  function chooseScenario(next: Scenario) {
-    setScenario(next);
-    setManuallyClosed(new Set());
-    setEditClosure(false);
+    if (simulation || locating || startFloor === null || activeFloor !== startFloor) return;
+    const snapped = findClosestCorridorNode(point, activeFloor);
+    if (snapped) placeStart(snapped, 'Map-selected starting point');
   }
 
   return (
@@ -75,8 +58,14 @@ export function App() {
       </header>
       <main>
         <div className="title-row">
-          <div><p className="eyebrow">GEORGIA TECH · KLAUS</p><h1>Evacuation routes</h1><p className="subtitle">Explore how corridor closures change the route through Klaus.</p></div>
-          <FloorPickerDialog floors={floors} locating={locating} onSelect={locate} />
+          <div><p className="eyebrow">GEORGIA TECH · KLAUS</p><h1>Evacuation routes</h1><p className="subtitle">Find a route from your starting point to a modeled exit.</p></div>
+          <div className="title-actions">
+            <FloorPickerDialog floors={floors} locating={locating} onSelect={locate} />
+            <button className="navigate simulation-button" disabled={!start || locating} onClick={() => {
+              if (simulation) setSimulation(null);
+              else if (start) setSimulation(startFire(start, initialRoute));
+            }}>{simulation ? 'Reset simulation' : 'Fire simulation'}</button>
+          </div>
         </div>
         <div className="layout">
           <section className="map-card" aria-labelledby="map-heading">
@@ -88,38 +77,35 @@ export function App() {
             </div>
             <div className="map-stage">
               <span className="stage-label">LEVEL {activeFloor}</span>
-              <FloorMap floor={floor} route={route} start={start} closedEdges={closedEdges} onPick={pickPoint} />
+              <FloorMap floor={floor} route={route} start={start} simulation={simulation} onPick={pickPoint} />
             </div>
             <div className="map-footer">
-              <ul className="legend"><li><i className="here" />Start</li><li><i className="route" />Route</li><li><i className="blocked" />Closure</li><li><i className="exit" />Exit</li></ul>
-              <span>{editClosure ? 'Tap a corridor to toggle a closure' : startFloor === null ? 'Select Navigate to start' : activeFloor === startFloor ? 'Tap a corridor to set or correct your start' : 'View your current floor to adjust your start'}</span>
+              <ul className="legend"><li><i className="here" />Start</li><li><i className="route" />Route</li><li><i className="exit" />Exit</li>{simulation && <li><i className="fire" />Fire</li>}</ul>
             </div>
           </section>
-          <aside className="controls" aria-label="Simulation controls">
+          <aside className="controls" aria-label="Route details">
             {start && <section className={`result-card ${route ? '' : 'no-route'}`} aria-live="polite">
               <p className="eyebrow">{route ? 'SIMULATED ROUTE' : 'SIMULATION RESULT'}</p>
               <h2>{route ? exitLabels.get(route.exit.id) ?? 'Modeled exit' : 'No reachable exit'}</h2>
               {route ? <div className="route-stops" aria-label="Route floors">
                 {routeFloors.map((level, index) => <span key={index}>{index > 0 && <span aria-hidden="true">→</span>} <button onClick={() => setActiveFloor(level)}>Level {level}</button></span>)}
-              </div> : <p>Try a different starting point or change the closures.</p>}
+              </div> : <p>{simulation ? 'Fire has blocked all available routes from this start.' : 'Try a different starting point.'}</p>}
             </section>}
             <section className="panel">
               <h2>Starting position</h2>
               <p>{start ? `${source} · Level ${start.floor}` : startFloor === null ? 'Select Navigate to choose your floor.' : `Level ${startFloor}`}</p>
               {locationStatus && <p role="status">{locationStatus}</p>}
             </section>
-            <section className="panel">
-              <h2>Scenario</h2>
-              <fieldset className="scenario-options" aria-label="Closure scenario">
-                {scenarios.map(item => <label key={item.id} className={scenario === item.id ? 'selected' : ''}>
-                  <input type="radio" name="scenario" checked={scenario === item.id} onChange={() => chooseScenario(item.id)} />
-                  <span><strong>{item.name}</strong><small>{item.detail}</small></span>
-                </label>)}
-              </fieldset>
-              {start && scenario === 'closure' && !detourClosure && <p role="status">No alternate route from this starting point. Try another start or edit closures on the map.</p>}
-              <button className="secondary edit" aria-pressed={editClosure} onClick={() => setEditClosure(!editClosure)}>{editClosure ? 'Done editing closures' : 'Edit closures on map'}</button>
-              {manuallyClosed.size > 0 && <button className="plain" onClick={() => setManuallyClosed(new Set())}>Clear custom closures</button>}
-            </section>
+            {simulation && ignition && <section className="panel" aria-labelledby="fire-details-heading">
+              <h2 id="fire-details-heading">Fire spread</h2>
+              <p>Started on Level {ignition.floor} · Node {ignition.id}</p>
+              <div role="status">
+                <p>{simulation.elapsedSeconds}s elapsed · {simulation.burning.size} burning</p>
+                <p>{simulation.elapsedSeconds === 0 ? 'Fire started' : spreading
+                  ? `+${simulation.frontier.size} reached in the last ${spreadIntervalMs / 1000}s`
+                  : 'Spread complete'}</p>
+              </div>
+            </section>}
           </aside>
         </div>
         <footer>Simulation only · Follow posted signs and official instructions in an emergency.</footer>
