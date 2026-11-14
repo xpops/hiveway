@@ -1,5 +1,4 @@
 import { toKlausFloorPoint } from "./coordinates.js";
-import { buildRoutingGraph, findClosestCorridor, findNearestExit } from "./routing.js";
 
 const form = document.querySelector("form");
 const floorSelect = form.elements.floor;
@@ -19,7 +18,8 @@ const routeResult = document.querySelector("#route-result");
 const startMarkerStatus = document.querySelector("#start-marker-status");
 const showStartFloor = document.querySelector("#show-start-floor");
 const coordinateInputs = [form.elements.latitude, form.elements.longitude];
-let graph;
+let corridorsByFloor;
+let routeRequest = 0;
 let floors;
 let position;
 let snap;
@@ -43,19 +43,42 @@ function renderRoute() {
   exitRoute.setAttribute("d", path.trim());
 }
 
-function plotPosition(x, y) {
+async function plotPosition(x, y) {
+  const request = ++routeRequest;
   const floor = Number(floorSelect.value);
   const { width, height } = floors.get(floor).coordinateSpace;
   const inside = x >= 0 && x <= width && y >= 0 && y <= height;
   position = { x, y, floor, inside };
-  snap = inside ? findClosestCorridor(x, y, graph.segmentsByFloor.get(floor) ?? []) : null;
-  route = snap ? findNearestExit(snap, graph) : null;
+  snap = route = null;
 
   marker.setAttribute("cx", x);
   marker.setAttribute("cy", y);
   result.textContent = `x = ${x.toFixed(2)}, y = ${y.toFixed(2)} px${inside ? "" : " · Outside SVG bounds"}`;
+  snapResult.hidden = true;
+  routeResult.hidden = !inside;
+  routeResult.textContent = inside ? "Calculating route…" : "";
+  renderRoute();
+  if (!inside) return;
+
+  try {
+    const response = await fetch("/api/route", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ floor, x, y }),
+    });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const data = await response.json();
+    if (request !== routeRequest) return;
+    ({ snap, route } = data);
+  } catch {
+    if (request === routeRequest) {
+      routeResult.textContent = "Could not calculate the route. Start the routing server with python3 legacy/test/server.py.";
+    }
+    return;
+  }
+
   snapResult.hidden = !snap;
-  routeResult.hidden = !snap;
+  routeResult.textContent = "No reachable exit.";
   if (snap) {
     snappedMarker.setAttribute("cx", snap.x);
     snappedMarker.setAttribute("cy", snap.y);
@@ -63,12 +86,12 @@ function plotPosition(x, y) {
     snapLink.setAttribute("y1", y);
     snapLink.setAttribute("x2", snap.x);
     snapLink.setAttribute("y2", snap.y);
-    snapResult.textContent = `Nearest corridor (${snap.segment.edgeId}) · x = ${snap.x.toFixed(2)}, y = ${snap.y.toFixed(2)} px · Distance: ${snap.distancePx.toFixed(2)} px`;
+    snapResult.textContent = `Nearest corridor (${snap.edgeId}) · x = ${snap.x.toFixed(2)}, y = ${snap.y.toFixed(2)} px · Distance: ${snap.distancePx.toFixed(2)} px`;
     const levels = route?.points
       .filter((point, index, points) => point.floor !== points[index - 1]?.floor)
       .map(point => `Level ${point.floor}`).join(" → ");
     routeResult.textContent = route
-      ? `Nearest exit: ${graph.exitLabels.get(route.exit.id) ?? route.exit.id} · Route cost: ${route.cost.toFixed(2)} schematic units · ${levels}`
+      ? `Nearest exit: ${route.exitLabel} · Route cost: ${route.cost.toFixed(2)} schematic units · ${levels}`
       : "No reachable exit.";
   }
   renderRoute();
@@ -83,7 +106,7 @@ function renderFloor() {
   background.setAttribute("width", width);
   background.setAttribute("height", height);
   corridors.replaceChildren();
-  for (const { start, end } of graph.segmentsByFloor.get(floor) ?? []) {
+  for (const { start, end } of corridorsByFloor.get(floor) ?? []) {
     const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
     line.setAttribute("x1", start.x);
     line.setAttribute("y1", start.y);
@@ -105,21 +128,28 @@ function plotCoordinates() {
 }
 
 function selectStartFloor() {
+  routeRequest++;
   position = snap = route = null;
   result.textContent = "";
   snapResult.hidden = routeResult.hidden = true;
   viewFloor.value = floorSelect.value;
   renderFloor();
   floorStatus.hidden = true;
-  if (form.checkValidity()) plotCoordinates();
 }
 
 try {
   const response = await fetch("../../src/data/klaus/klaus-graph.json");
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
   const data = await response.json();
-  graph = buildRoutingGraph(data);
   floors = new Map(data.floors.map(floor => [floor.floor, floor]));
+  corridorsByFloor = new Map(data.floors.map(({ floor }) => [floor, []]));
+  const nodes = new Map(data.nodes.map(node => [node.id, node]));
+  for (const edge of data.edges) {
+    if (edge.kind !== "walk") continue;
+    const start = nodes.get(edge.source);
+    const end = nodes.get(edge.target);
+    if (start.floor === end.floor) corridorsByFloor.get(start.floor).push({ start, end });
+  }
 
   form.addEventListener("submit", event => {
     event.preventDefault();
@@ -140,5 +170,5 @@ try {
   selectStartFloor();
 } catch {
   floorStatus.hidden = false;
-  floorStatus.textContent = "Could not load the corridor graph. Run python3 -m http.server 8000 from the repository root.";
+  floorStatus.textContent = "Could not load the corridor graph. Run python3 legacy/test/server.py from the repository root.";
 }
