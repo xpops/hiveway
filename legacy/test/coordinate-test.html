@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coordinates</title>
+<link rel="stylesheet" href="./coordinate-test.css">
+<main>
+  <form autocomplete="off">
+    <label>Starting floor
+      <select name="floor">
+        <option value="1">Level 1</option>
+        <option value="2">Level 2</option>
+        <option value="3">Level 3</option>
+      </select>
+    </label>
+    <label>Latitude
+      <input name="latitude" type="number" step="any" min="-90" max="90" required value="33.77730245964952">
+    </label>
+    <label>Longitude
+      <input name="longitude" type="number" step="any" min="-180" max="180" required value="-84.39604354023908">
+    </label>
+    <button>Plot on map</button>
+  </form>
+  <p id="floor-status" role="status" hidden></p>
+  <div id="floor-map" hidden>
+    <label class="map-floor">View floor
+      <select id="view-floor">
+        <option value="1">Level 1</option>
+        <option value="2">Level 2</option>
+        <option value="3">Level 3</option>
+      </select>
+    </label>
+    <p id="start-marker-status" hidden>
+      Start markers are on <button id="show-start-floor" type="button"></button>.
+    </p>
+    <output id="result" aria-live="polite"></output>
+    <output id="snap-result" aria-live="polite" hidden></output>
+    <output id="route-result" aria-live="polite" hidden></output>
+    <svg viewBox="0 0 1125 560" role="img" aria-label="Klaus level 1 corridors and plotted position">
+      <image id="floor-background" />
+      <g id="corridors" fill="none" stroke="#64748b" stroke-width="2" opacity="0.55"></g>
+      <path id="exit-route" fill="none" stroke="#b45309" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+      <line id="snap-link" stroke="#15803d" stroke-width="2" stroke-dasharray="5 4" visibility="hidden"></line>
+      <circle id="position" r="10" fill="#175be0" stroke="white" stroke-width="2" visibility="hidden"></circle>
+      <circle id="snapped-position" r="5" fill="#15803d" stroke="white" stroke-width="1.5" visibility="hidden"></circle>
+    </svg>
+    <p id="map-status" role="status"></p>
+  </div>
+</main>
+<script type="module" src="./coordinate-test.js"></script>
+</html>

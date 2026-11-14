@@ -1,0 +1,40 @@
+body { margin: 0; background: #f4f6fa; color: #202a3b; font: 16px/1.5 system-ui, sans-serif; }
+main { max-width: 1040px; margin: auto; padding: 24px; }
+form { display: grid; grid-template-columns: 144px repeat(2, minmax(0, 224px)) auto; gap: 12px; align-items: end; width: fit-content; max-width: 100%; }
+label { display: grid; gap: 6px; min-width: 0; }
+input, select, button {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  height: 44px;
+  font: inherit;
+  padding: 0 12px;
+  border-radius: 7px;
+  border: 1px solid #8b98aa;
+}
+button { background: #174baf; color: white; cursor: pointer; }
+select {
+  appearance: none;
+  padding-right: 36px;
+  background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m4 6 4 4 4-4' fill='none' stroke='%23202a3b' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") right 12px center / 16px no-repeat;
+}
+@media (max-width: 720px) {
+  form { grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; max-width: 460px; }
+  label:first-child, button { grid-column: 1 / -1; }
+}
+@media (max-width: 460px) {
+  form { grid-template-columns: minmax(0, 1fr); }
+}
+svg { display: block; width: 100%; height: auto; background: white; border: 1px solid #cdd5e1; border-radius: 10px; }
+output { display: block; margin: 16px 0; font-variant-numeric: tabular-nums; }
+
+.map-floor { width: 144px; margin-top: 16px; }
+#show-start-floor {
+  width: auto;
+  height: auto;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #174baf;
+  text-decoration: underline;
+}
