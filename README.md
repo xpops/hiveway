@@ -59,7 +59,15 @@ src/data/klaus/
 README.md
 ```
 
-The React demo starts at `index.html` and `src/main.tsx`. `src/App.tsx` handles the demo controls, `src/components/FloorMap.tsx` draws the SVG overlays, `src/location/coordinates.ts` converts device coordinates, and `src/routing/routing.ts` contains corridor snapping and search. The team's original coordinate test lives in `legacy/test/`.
+The React demo starts at `index.html` and `src/main.tsx`.
+
+- `src/App.tsx` connects the map, starting position, and scenario controls.
+- `src/components/FloorPickerDialog.tsx` displays Navigate and prompts for the current floor.
+- `src/components/FloorMap.tsx` renders the floor map and route overlays.
+- `src/location/useStartLocation.ts` requests device location, converts it with `coordinates.ts`, and snaps it to a corridor on the chosen floor.
+- `src/simulation/evacuationEngine.ts` applies scenario and manual closures and calls the search in `src/routing/routing.ts`.
+
+The team's original coordinate test lives in `legacy/test/`.
 
 ## Local development
 

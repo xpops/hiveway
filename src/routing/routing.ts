@@ -91,9 +91,3 @@ export function findNearestExit(
     }
   }
 }
-
-export function findDetourClosure(start: Snap): string | undefined {
-  const route = findNearestExit(start, new Set());
-  return route?.edgeIds.find(id => id !== start.segment.edgeId && edges.get(id)?.kind === 'walk' &&
-    findNearestExit(start, new Set([id])) !== null);
-}

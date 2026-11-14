@@ -1,9 +1,9 @@
-import { useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { FloorMap } from './components/FloorMap';
-import { toKlausFloorPoint } from './location/coordinates';
-import { exitLabels, findClosestCorridor, findDetourClosure, findNearestExit, floors, type Point, type Snap } from './routing/routing';
-
-type Scenario = 'open' | 'closure' | 'unreachable';
+import { FloorPickerDialog } from './components/FloorPickerDialog';
+import { useStartLocation } from './location/useStartLocation';
+import { exitLabels, findClosestCorridor, floors, type Point, type Snap } from './routing/routing';
+import { calculateEvacuation, type Scenario } from './simulation/evacuationEngine';
 
 const scenarios: { id: Scenario; name: string; detail: string }[] = [
   { id: 'open', name: 'Clear corridors', detail: 'Compare the route before a closure.' },
@@ -14,29 +14,17 @@ const scenarios: { id: Scenario; name: string; detail: string }[] = [
 export function App() {
   const [activeFloor, setActiveFloor] = useState(1);
   const [startFloor, setStartFloor] = useState<number | null>(null);
-  const floorDialog = useRef<HTMLDialogElement>(null);
   const [start, setStart] = useState<Snap | null>(null);
   const [source, setSource] = useState('');
-  const [locationStatus, setLocationStatus] = useState('');
-  const [locating, setLocating] = useState(false);
+  const { locating, locationStatus, requestLocation, clearLocationStatus } = useStartLocation();
   const [scenario, setScenario] = useState<Scenario>('open');
   const [manuallyClosed, setManuallyClosed] = useState<Set<string>>(new Set());
   const [editClosure, setEditClosure] = useState(false);
   const floor = floors.find(item => item.floor === activeFloor)!;
-  const detourClosure = useMemo(
-    () => start && scenario === 'closure' ? findDetourClosure(start) : undefined,
-    [start, scenario],
+  const { route, closedEdges, detourClosure } = useMemo(
+    () => calculateEvacuation(start, scenario, manuallyClosed),
+    [start, scenario, manuallyClosed],
   );
-  const closedEdges = useMemo(() => {
-    const edges = new Set(manuallyClosed);
-    if (detourClosure) edges.add(detourClosure);
-    return edges;
-  }, [manuallyClosed, detourClosure]);
-  const route = useMemo(() => {
-    if (!start) return null;
-    const closedExits = scenario === 'unreachable' ? new Set(exitLabels.keys()) : new Set<string>();
-    return findNearestExit(start, closedEdges, closedExits);
-  }, [start, closedEdges, scenario]);
   const routeFloors = route?.points.filter((point, index, points) => point.floor !== points[index - 1]?.floor)
     .map(point => point.floor) ?? [];
 
@@ -45,43 +33,15 @@ export function App() {
     setStartFloor(snap.floor);
     setActiveFloor(snap.floor);
     setSource(label);
-    setLocationStatus('');
+    clearLocationStatus();
   }
 
   function locate(selectedFloor: number) {
-    floorDialog.current?.close();
     setStart(null);
     setStartFloor(selectedFloor);
     setActiveFloor(selectedFloor);
     setEditClosure(false);
-    if (!navigator.geolocation) {
-      setLocationStatus('Location is unavailable. Tap a corridor to set your start.');
-      return;
-    }
-    const level = floors.find(item => item.floor === selectedFloor)!;
-    setLocating(true);
-    setLocationStatus('Requesting device location…');
-    navigator.geolocation.getCurrentPosition(({ coords }) => {
-      setLocating(false);
-      const point = toKlausFloorPoint(coords.latitude, coords.longitude, level.floor);
-      const { width, height } = level.coordinateSpace;
-      if (point.x < 0 || point.y < 0 || point.x > width || point.y > height) {
-        setLocationStatus('The location estimate is outside this map. Tap a corridor to set your start.');
-        return;
-      }
-      const snapped = findClosestCorridor(point, level.floor);
-      if (!snapped) {
-        setLocationStatus('No corridor found. Tap a corridor to set your start.');
-        return;
-      }
-      placeStart(snapped, `Device location · ±${Math.ceil(coords.accuracy)} m`);
-      if (coords.accuracy > 15 || snapped.distancePx > 90) {
-        setLocationStatus('The position is approximate. Check the blue marker and tap the map to correct it.');
-      }
-    }, () => {
-      setLocating(false);
-      setLocationStatus('Could not get device location. Tap a corridor to set your start.');
-    }, { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 });
+    requestLocation(selectedFloor, placeStart);
   }
 
   function pickPoint(point: Point) {
@@ -116,16 +76,7 @@ export function App() {
       <main>
         <div className="title-row">
           <div><p className="eyebrow">GEORGIA TECH · KLAUS</p><h1>Evacuation routes</h1><p className="subtitle">Explore how corridor closures change the route through Klaus.</p></div>
-          <button className="navigate" disabled={locating} onClick={() => floorDialog.current?.showModal()}>{locating ? 'Locating…' : 'Navigate'}</button>
-          <dialog ref={floorDialog} className="floor-dialog" aria-labelledby="floor-dialog-title">
-            <h2 id="floor-dialog-title">Which floor are you on?</h2>
-            <div className="floor-options">
-              {floors.map(({ floor }) => (
-                <button key={floor} className="secondary" onClick={() => locate(floor)}>Level {floor}</button>
-              ))}
-            </div>
-            <form method="dialog"><button className="plain">Cancel</button></form>
-          </dialog>
+          <FloorPickerDialog floors={floors} locating={locating} onSelect={locate} />
         </div>
         <div className="layout">
           <section className="map-card" aria-labelledby="map-heading">
