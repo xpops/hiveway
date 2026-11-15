@@ -80,3 +80,15 @@ h2 { margin: 0; font-size: 1rem; letter-spacing: -.02em; }
 footer { margin-top: 18px; color: var(--muted); font-size: .75rem; }
 @media (max-width: 830px) { .layout { grid-template-columns: minmax(0, 1fr); } .controls { grid-template-columns: repeat(2, minmax(0, 1fr)); } .result-card { grid-column: 1 / -1; } }
 @media (max-width: 550px) { .site-header { min-height: 60px; padding: 0 14px; } main { padding: 23px 12px 18px; } .title-row { align-items: flex-start; } .subtitle { font-size: .8rem; } .controls { grid-template-columns: 1fr; } .map-stage { min-height: 205px; } }
+
+.position-heading { fill: #1965cf; fill-opacity: .23; stroke: #1965cf; stroke-opacity: .48; stroke-width: 1px; pointer-events: none; }
+.compass-button { margin-top: 8px; }
+
+.gps-diagnostics { min-width: 0; }
+.gps-diagnostics summary { cursor: pointer; font-weight: 750; }
+.gps-log { list-style: none; margin: 8px 0 0; padding: 0; max-height: 300px; overflow: auto; }
+.gps-event { padding: 9px 0; border-top: 1px solid var(--border); font-size: .75rem; overflow-wrap: anywhere; }
+.gps-event-header { display: flex; flex-wrap: wrap; gap: 3px 8px; align-items: baseline; }
+.gps-event-header span, .gps-event dt { color: var(--muted); }
+.gps-event dl { margin: 6px 0 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2px 8px; font-variant-numeric: tabular-nums; }
+.gps-event dd { margin: 0; }

@@ -14,7 +14,7 @@ A browser demo that reroutes users through Georgia Tech’s Klaus Advanced Compu
 
 ## What the demo does
 
-1. **Locate the start.** Select **Navigate**, choose your current floor, and grant location permission. The app projects the reported latitude and longitude onto that floor's map, then highlights the projected point on the closest corridor as the estimated start. Tap a corridor to set or correct the start.
+1. **Locate the start.** Select **Navigate**, choose your current floor, and grant location permission. The app projects the reported latitude and longitude onto that floor's map, then highlights the projected point on the closest corridor. The first usable reading sets the route start. Later readings move the position marker and trim the route as you advance along it. Near a stair on the route, confirm arrival on the next floor to switch the map and location tracking to that floor. Tap a corridor to set or correct the start.
 2. **Route to a modeled exit.** Show the path across floors and mark stairs where the user changes levels. Choose the reachable simulation endpoint with the lowest graph cost.
 3. **Simulate a closure.** Pick a preset or block a graph segment. Rerun the search with closed corridors and elevator transitions excluded. Clear the displayed path if no eligible endpoint remains reachable.
 
@@ -64,7 +64,7 @@ The React demo starts at `index.html` and `src/main.tsx`.
 - `src/App.tsx` connects the map, starting position, and scenario controls.
 - `src/components/FloorPickerDialog.tsx` displays Navigate and prompts for the current floor.
 - `src/components/FloorMap.tsx` renders the floor map and route overlays.
-- `src/location/useStartLocation.ts` requests device location, converts it with `coordinates.ts`, and snaps it to a corridor on the chosen floor.
+- `src/location/useStartLocation.ts` subscribes to device location with `watchPosition()`, converts each reading with `coordinates.ts`, and snaps it to a corridor on the chosen floor.
 - `src/simulation/evacuationEngine.ts` applies scenario and manual closures and calls the search in `src/routing/routing.ts`.
 
 The team's original coordinate test lives in `legacy/test/`.

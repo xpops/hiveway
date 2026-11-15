@@ -28,21 +28,23 @@ for (const edge of data.edges) {
 export function findClosestCorridor(point: Point, floor: number): Snap | null {
   let closest: Snap | null = null;
   for (const segment of segmentsByFloor.get(floor) ?? []) {
-    const { start, end } = segment;
-    const dx = end.x - start.x;
-    const dy = end.y - start.y;
-    const lengthSquared = dx * dx + dy * dy;
-    if (lengthSquared === 0) continue;
-    const projection = ((point.x - start.x) * dx + (point.y - start.y) * dy) / lengthSquared;
-    const fraction = Math.max(0, Math.min(1, projection));
-    const x = start.x + fraction * dx;
-    const y = start.y + fraction * dy;
-    const distancePx = Math.hypot(point.x - x, point.y - y);
-    if (!closest || distancePx < closest.distancePx) {
-      closest = { segment, floor, fraction, x, y, distancePx };
-    }
+    const snap = projectOntoCorridor(point, segment);
+    if (snap && (!closest || snap.distancePx < closest.distancePx)) closest = snap;
   }
   return closest;
+}
+
+export function projectOntoCorridor(point: Point, segment: Segment): Snap | null {
+  const { start, end } = segment;
+  const dx = end.x - start.x;
+  const dy = end.y - start.y;
+  const lengthSquared = dx * dx + dy * dy;
+  if (lengthSquared === 0) return null;
+  const projection = ((point.x - start.x) * dx + (point.y - start.y) * dy) / lengthSquared;
+  const fraction = Math.max(0, Math.min(1, projection));
+  const x = start.x + fraction * dx;
+  const y = start.y + fraction * dy;
+  return { segment, floor: start.floor, fraction, x, y, distancePx: Math.hypot(point.x - x, point.y - y) };
 }
 
 export function findNearestExit(
@@ -52,7 +54,7 @@ export function findNearestExit(
 ): Route | null {
   const { segment, fraction } = snap;
   const distances = new Map<string, number>();
-  // A start inside a closed segment cannot reach either endpoint. A start at an
+  // TODO: A start inside a closed segment ignores that segment and run Dijkstra. A start at an
   // endpoint can still use other open connections without crossing that segment.
   if (!closedEdges.has(segment.edgeId) || fraction === 0) distances.set(segment.start.id, fraction * segment.cost);
   if (!closedEdges.has(segment.edgeId) || fraction === 1) distances.set(segment.end.id, (1 - fraction) * segment.cost);

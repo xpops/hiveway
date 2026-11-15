@@ -1,8 +1,12 @@
-import { useMemo, useState } from 'react';
+import { useDeviceHeading } from './location/useDeviceHeading';
+import { useEffect, useMemo, useState } from 'react';
+import { GpsDiagnostics } from './components/GpsDiagnostics';
 import { FloorMap } from './components/FloorMap';
 import { FloorPickerDialog } from './components/FloorPickerDialog';
+import { StairArrivalDialog } from './components/StairArrivalDialog';
+import { advanceProgress, nearbyStair, remainingRoutePoints, routeStart, type RouteProgress } from './location/routeProgress';
 import { useStartLocation } from './location/useStartLocation';
-import { exitLabels, findClosestCorridor, floors, type Point, type Snap } from './routing/routing';
+import { exitLabels, findClosestCorridor, floors, type Point, type Route, type Snap } from './routing/routing';
 import { calculateEvacuation, type Scenario } from './simulation/evacuationEngine';
 
 const scenarios: { id: Scenario; name: string; detail: string }[] = [
@@ -15,8 +19,10 @@ export function App() {
   const [activeFloor, setActiveFloor] = useState(1);
   const [startFloor, setStartFloor] = useState<number | null>(null);
   const [start, setStart] = useState<Snap | null>(null);
+  const [livePosition, setLivePosition] = useState<Snap | null>(null);
   const [source, setSource] = useState('');
-  const { locating, locationStatus, requestLocation, clearLocationStatus } = useStartLocation();
+  const compass = useDeviceHeading();
+  const { locating, gpsLog, locationStatus, requestLocation, clearLocationStatus } = useStartLocation(compass.readTrustedHeading);
   const [scenario, setScenario] = useState<Scenario>('open');
   const [manuallyClosed, setManuallyClosed] = useState<Set<string>>(new Set());
   const [editClosure, setEditClosure] = useState(false);
@@ -25,11 +31,24 @@ export function App() {
     () => calculateEvacuation(start, scenario, manuallyClosed),
     [start, scenario, manuallyClosed],
   );
-  const routeFloors = route?.points.filter((point, index, points) => point.floor !== points[index - 1]?.floor)
-    .map(point => point.floor) ?? [];
+  const [tracked, setTracked] = useState<{ route: Route; progress: RouteProgress } | null>(null);
+  const progress = tracked?.route === route ? tracked.progress : routeStart;
+  useEffect(() => {
+    if (!route || !livePosition) return;
+    setTracked(previous => {
+      const current = previous?.route === route ? previous.progress : routeStart;
+      const next = advanceProgress(route.points, current, livePosition);
+      return previous?.route === route && next === current ? previous : { route, progress: next };
+    });
+  }, [route, livePosition]);
+  const remainingPoints = route ? remainingRoutePoints(route, progress) : [];
+  const stair = route && nearbyStair(route, progress);
+  const routeFloors = remainingPoints.filter((point, index, points) => point.floor !== points[index - 1]?.floor)
+    .map(point => point.floor);
 
   function placeStart(snap: Snap, label: string) {
     setStart(snap);
+    setLivePosition(null);
     setStartFloor(snap.floor);
     setActiveFloor(snap.floor);
     setSource(label);
@@ -38,10 +57,34 @@ export function App() {
 
   function locate(selectedFloor: number) {
     setStart(null);
+    setLivePosition(null);
     setStartFloor(selectedFloor);
     setActiveFloor(selectedFloor);
     setEditClosure(false);
-    requestLocation(selectedFloor, placeStart);
+    requestLocation(selectedFloor, receivePosition);
+  }
+
+  function receivePosition(snap: Snap, label: string, reacquired = false) {
+    setStart(previous => reacquired ? snap : previous ?? snap);
+    setLivePosition(snap);
+    setSource(label);
+  }
+
+  function confirmArrival() {
+    if (!route || !stair) return;
+    const floor = stair.to.floor;
+    const landing = findClosestCorridor(stair.to, floor);
+    if (!landing) return;
+    setTracked({ route, progress: { index: stair.index + 1, fraction: 0 } });
+    setLivePosition(landing);
+    setStartFloor(floor);
+    setActiveFloor(floor);
+    setSource('Confirmed stair landing');
+    requestLocation(floor, receivePosition, landing);
+  }
+
+  function rebaseRoute() {
+    if (livePosition) setStart(livePosition);
   }
 
   function pickPoint(point: Point) {
@@ -50,6 +93,7 @@ export function App() {
     if (!snapped) return;
     if (editClosure) {
       if (snapped.distancePx > 40) return;
+      rebaseRoute();
       setManuallyClosed(previous => {
         const next = new Set(previous);
         if (next.has(snapped.segment.edgeId)) next.delete(snapped.segment.edgeId);
@@ -62,6 +106,7 @@ export function App() {
   }
 
   function chooseScenario(next: Scenario) {
+    rebaseRoute();
     setScenario(next);
     setManuallyClosed(new Set());
     setEditClosure(false);
@@ -88,10 +133,10 @@ export function App() {
             </div>
             <div className="map-stage">
               <span className="stage-label">LEVEL {activeFloor}</span>
-              <FloorMap floor={floor} route={route} start={start} closedEdges={closedEdges} onPick={pickPoint} />
+              <FloorMap floor={floor} points={remainingPoints} exit={route?.exit} position={livePosition ?? start} heading={compass.heading} closedEdges={closedEdges} onPick={pickPoint} />
             </div>
             <div className="map-footer">
-              <ul className="legend"><li><i className="here" />Start</li><li><i className="route" />Route</li><li><i className="blocked" />Closure</li><li><i className="exit" />Exit</li></ul>
+              <ul className="legend"><li><i className="here" />Position</li><li><i className="route" />Route</li><li><i className="blocked" />Closure</li><li><i className="exit" />Exit</li></ul>
               <span>{editClosure ? 'Tap a corridor to toggle a closure' : startFloor === null ? 'Select Navigate to start' : activeFloor === startFloor ? 'Tap a corridor to set or correct your start' : 'View your current floor to adjust your start'}</span>
             </div>
           </section>
@@ -104,9 +149,14 @@ export function App() {
               </div> : <p>Try a different starting point or change the closures.</p>}
             </section>}
             <section className="panel">
-              <h2>Starting position</h2>
-              <p>{start ? `${source} · Level ${start.floor}` : startFloor === null ? 'Select Navigate to choose your floor.' : `Level ${startFloor}`}</p>
+              <h2>Position</h2>
+              {startFloor !== null && !compass.enabled && (
+                <button type="button" className="secondary compass-button" onClick={compass.enableHeading}>Enable compass</button>
+              )}
+              {compass.headingStatus && <p role="status">{compass.headingStatus}</p>}
+              <p>{start ? `${source} · Level ${startFloor}` : startFloor === null ? 'Select Navigate to choose your floor.' : `Level ${startFloor}`}</p>
               {locationStatus && <p role="status">{locationStatus}</p>}
+              {stair && <StairArrivalDialog key={`${stair.index}-${stair.from.floor}-${stair.from.x}-${stair.from.y}-${stair.to.floor}`} floor={stair.to.floor} onArrival={confirmArrival} />}
             </section>
             <section className="panel">
               <h2>Scenario</h2>
@@ -118,8 +168,9 @@ export function App() {
               </fieldset>
               {start && scenario === 'closure' && !detourClosure && <p role="status">No alternate route from this starting point. Try another start or edit closures on the map.</p>}
               <button className="secondary edit" aria-pressed={editClosure} onClick={() => setEditClosure(!editClosure)}>{editClosure ? 'Done editing closures' : 'Edit closures on map'}</button>
-              {manuallyClosed.size > 0 && <button className="plain" onClick={() => setManuallyClosed(new Set())}>Clear custom closures</button>}
+              {manuallyClosed.size > 0 && <button className="plain" onClick={() => { rebaseRoute(); setManuallyClosed(new Set()); }}>Clear custom closures</button>}
             </section>
+            <GpsDiagnostics entries={gpsLog} />
           </aside>
         </div>
         <footer>Simulation only · Follow posted signs and official instructions in an emergency.</footer>

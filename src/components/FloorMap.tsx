@@ -1,17 +1,19 @@
 import type { MouseEvent } from 'react';
+import { toFloorHeading } from '../location/coordinates';
 import { edges, floors, nodes, type Point, type Route, type Snap } from '../routing/routing';
 
 type Props = {
   floor: (typeof floors)[number];
-  route: Route | null;
-  start: Snap | null;
+  points: Route['points'];
+  exit?: Route['exit'];
+  position: Snap | null;
+  heading: number | null;
   closedEdges: ReadonlySet<string>;
   onPick: (point: Point) => void;
 };
 
-export function FloorMap({ floor, route, start, closedEdges, onPick }: Props) {
+export function FloorMap({ floor, points, exit, position, heading, closedEdges, onPick }: Props) {
   const { width, height } = floor.coordinateSpace;
-  const points = route?.points ?? [];
   const path = points.map((point, index) => {
     if (point.floor !== floor.floor) return '';
     const command = points[index - 1]?.floor === floor.floor ? 'L' : 'M';
@@ -21,7 +23,6 @@ export function FloorMap({ floor, route, start, closedEdges, onPick }: Props) {
     const next = points[index + 1];
     return next && point.floor !== next.floor ? [{ from: point, to: next }] : [];
   });
-  const exit = route?.exit.floor === floor.floor ? route.exit : null;
 
   function selectPoint(event: MouseEvent<SVGSVGElement>) {
     const transform = event.currentTarget.getScreenCTM();
@@ -51,8 +52,16 @@ export function FloorMap({ floor, route, start, closedEdges, onPick }: Props) {
           <text className="step-label" textAnchor="middle" dominantBaseline="central">{to.floor}</text>
         </g>
       ))}
-      {exit && <circle className="exit-marker" cx={exit.x} cy={exit.y} r="11" />}
-      {start?.floor === floor.floor && <circle className="start-marker" cx={start.x} cy={start.y} r="10" />}
+      {exit?.floor === floor.floor && <circle className="exit-marker" cx={exit.x} cy={exit.y} r="11" />}
+      {position?.floor === floor.floor && (
+        <g>
+          {heading !== null && (
+            <path className="position-heading" d="M0 0 L-24 -44 Q0 -57 24 -44 Z"
+              transform={`translate(${position.x} ${position.y}) rotate(${toFloorHeading(heading, floor.floor)})`} />
+          )}
+          <circle className="start-marker" cx={position.x} cy={position.y} r="10" />
+        </g>
+      )}
     </svg>
   );
 }
