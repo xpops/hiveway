@@ -8,7 +8,7 @@ A browser demo that reroutes users through Georgia Tech’s Klaus Advanced Compu
 
 | Status | Scope |
 | --- | --- |
-| Available | SVG maps for levels 1–3, a level 1 graph overlay for inspection, and one combined routing graph with 152 nodes and 170 edges. |
+| Available | SVG maps for levels 1–3, a level 1 graph overlay for inspection, and one combined routing graph with 150 nodes and 159 edges. |
 | Implemented demo | Simulated fire rerouting, manual floor selection, an estimated start node from device geolocation, and a route overlay. Live location accuracy still needs a test inside Klaus. |
 | Later | Room-to-room wayfinding after we map room entrances to graph nodes using a room-level plan or a manual survey. |
 
@@ -16,9 +16,9 @@ A browser demo that reroutes users through Georgia Tech’s Klaus Advanced Compu
 
 1. **Locate the start.** Select **Navigate**, choose your current floor, and grant location permission. The app projects the reported latitude and longitude onto that floor's map, then highlights the projected point on the closest corridor. The first usable reading sets the route start. Later readings move the position marker and trim the route as you advance along it. Near a stair on the route, confirm arrival on the next floor to switch the map and location tracking to that floor. Tap a corridor to set or correct the start.
 2. **Route to a modeled exit.** Show the path across floors and mark stairs where the user changes levels. Choose the reachable simulation endpoint with the lowest graph cost.
-3. **Simulate a fire or closure.** Select **Fire simulation** to ignite a corridor and spread fire to adjacent walking nodes every five seconds. HiveWay reroutes from the current position as the fire grows. The presets and manual closures provide separate controls for scripted scenarios. Clear the displayed path if no eligible endpoint remains reachable.
+3. **Simulate a fire.** Select **Simulate fire** to ignite a corridor. The app reroutes from the current position as the fire grows and clears the displayed path when there is no reachable exit.
 
-The demo uses modeled fire spread, scripted closures, and modeled exits. The CCB Binary Bridge is a simulation endpoint that connects to another building.
+The demo uses modeled fire spread and modeled exits. The CCB Binary Bridge is a simulation endpoint that connects to another building.
 
 ## Tech stack
 
@@ -27,9 +27,9 @@ The demo uses modeled fire spread, scripted closures, and modeled exits. The CCB
 | Web app | React, TypeScript, Vite | Floor selector, simulation controls, and a mobile-friendly map view. |
 | Starting position | Browser Geolocation API and floor calibration | Convert a device location fix to local SVG coordinates and snap it to a corridor on the selected floor. |
 | Map rendering | SVG | Render the base map and route overlay in the same floor-specific `viewBox` so they scale together. |
-| Map data | JSON | Load the three-floor graph, including walk, stair, and elevator edges, plus landmarks. |
+| Map data | JSON | Load the three-floor graph, including walk and stair connections, a separate vertical elevator network, and landmarks. |
 | Routing | Dijkstra in TypeScript | Find a minimum-cost path from the start to an eligible simulation exit. |
-| Simulation | Browser state, graph-based fire spread, and scripted scenarios | Track burning nodes and closed corridors or exits, then trigger routing again. |
+| Simulation | Browser state and graph-based fire spread | Track burning nodes and closed corridors or exits, then trigger routing again. |
 
 ## Local calculation and offline access
 
@@ -66,7 +66,7 @@ The React demo starts at `index.html` and `src/main.tsx`.
 - `src/components/FloorMap.tsx` renders the floor map and route overlays.
 - `src/location/useStartLocation.ts` subscribes to device location with `watchPosition()`, converts each reading with `coordinates.ts`, and snaps it to a corridor on the chosen floor.
 - `src/simulation/fireSimulation.ts` spreads fire through the corridor graph.
-- `src/simulation/evacuationEngine.ts` combines fire, scenario, and manual closures and calls the search in `src/routing/routing.ts`.
+- `src/simulation/evacuationEngine.ts` blocks burning nodes and their incident edges and calls the search in `src/routing/routing.ts`.
 
 The team's original coordinate test lives in `legacy/test/`.
 
@@ -77,7 +77,7 @@ npm ci
 npm run dev
 ```
 
-Open the Local URL printed by Vite. Select **Navigate** and choose your current floor to calculate an initial route. If location is unavailable, tap a corridor on that floor. Select **Fire simulation** to watch fire spread. Select **Reset simulation** to clear it. Select **Corridor closure** to recalculate the route around a blocked segment. **Exits unavailable** demonstrates the no-route state. To place a custom closure, select **Edit closures on map** and tap a corridor. Build with `npm run build` and serve the build locally with `npm run preview`.
+Open the Local URL printed by Vite. The app requests device location on load. Select **Navigate**, allow compass and motion access if prompted, and choose your current floor. Tap a corridor to set your position if location is unavailable. **Simulate fire** starts the scenario and **Reset fire** clears it. Build with `npm run build` and serve the build locally with `npm run preview`.
 
 ## Build order and demo checks
 
@@ -94,6 +94,6 @@ Open the Local URL printed by Vite. Select **Navigate** and choose your current 
 
 ### Sensor navigation demo
 
-Select **Navigate** and set a starting position. Enable the compass, then select **Start sensor navigation** and allow motion access on an HTTPS address. Keep the phone aimed in your direction of travel. Sensor Zoo counts steps. Recent cadence and acceleration intensity select a fixed step length of 0.72 m for walking or 1.00 m for running.
+Open the app over HTTPS on your phone. The first **Navigate** tap requests compass and motion access on browsers such as Safari that require a user gesture. Once permission, heading, and a starting position are available, the sensor navigation starts automatically. GPS supplies the starting location and continues tracking when motion or heading is unavailable at startup. Keep the phone aimed in your direction of travel. Sensor Zoo counts steps. Recent cadence and acceleration intensity select a fixed step length of 0.72 m for walking or 1.00 m for running.
 
-A heading change of at least 55° snaps to the closer end of the current corridor and selects the outgoing corridor closest to the new heading. Walking continues on the next step when a connected corridor forms an angle of less than 120° with the phone direction. If none does, the marker waits at the junction. The combined graph marks junctions as `branch` for three or more walk neighbors or `bend` for two walk neighbors with a turn of at least 55°. Stair and elevator nodes and connections to them are excluded from junction classification. The Position panel shows the estimated gait and speed. **Resume GPS** switches back to device location.
+A heading change of at least 55° snaps to the closer end of the current corridor and selects the outgoing corridor closest to the new heading. Walking continues on the next step when a connected corridor forms an angle of less than 120° with the phone direction. If none does, the marker waits at the junction. The combined graph marks junctions as `branch` for three or more walk neighbors or `bend` for two walk neighbors with a turn of at least 55°. Same-floor approaches to stairs are also marked as junctions so a turn can snap to the approach before the landing. Elevator nodes and the stair landings themselves remain separate from these junctions. The line below the map shows the estimated gait and speed.

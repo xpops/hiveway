@@ -38,7 +38,8 @@
       "id": "l1-n001",
       "floor": 1,
       "x": 57,
-      "y": 385
+      "y": 385,
+      "junction": "stair-approach"
     },
     {
       "id": "l1-n007",
@@ -213,7 +214,8 @@
       "floor": 1,
       "x": 602,
       "y": 550,
-      "kind": "exit"
+      "kind": "exit",
+      "junction": "stair-approach"
     },
     {
       "id": "l1-n177",
@@ -302,7 +304,8 @@
       "id": "l1-atrium-southeast",
       "floor": 1,
       "x": 575,
-      "y": 414
+      "y": 414,
+      "junction": "stair-approach"
     },
     {
       "id": "l1-atrium-exit-junction",
@@ -409,19 +412,22 @@
       "id": "l1-classroom-south-landing-approach",
       "floor": 1,
       "x": 738,
-      "y": 294
+      "y": 294,
+      "junction": "stair-approach"
     },
     {
       "id": "l1-classroom-east-landing-approach",
       "floor": 1,
       "x": 1019,
-      "y": 204
+      "y": 204,
+      "junction": "stair-approach"
     },
     {
       "id": "l2-n001",
       "floor": 2,
       "x": 127,
-      "y": 432
+      "y": 432,
+      "junction": "stair-approach"
     },
     {
       "id": "l2-n002",
@@ -555,7 +561,8 @@
       "id": "l2-n022",
       "floor": 2,
       "x": 580,
-      "y": 368
+      "y": 368,
+      "junction": "stair-approach"
     },
     {
       "id": "l2-n023",
@@ -591,13 +598,6 @@
       "junction": "bend"
     },
     {
-      "id": "l2-n028",
-      "floor": 2,
-      "x": 598,
-      "y": 550,
-      "junction": "branch"
-    },
-    {
       "id": "l2-n029",
       "floor": 2,
       "x": 518,
@@ -620,7 +620,7 @@
       "floor": 2,
       "x": 613,
       "y": 546,
-      "junction": "bend"
+      "junction": "branch"
     },
     {
       "id": "l2-n033",
@@ -632,7 +632,8 @@
       "id": "l2-n034",
       "floor": 2,
       "x": 710,
-      "y": 529
+      "y": 529,
+      "junction": "stair-approach"
     },
     {
       "id": "l2-n035",
@@ -664,7 +665,8 @@
       "id": "l2-n039",
       "floor": 2,
       "x": 1173,
-      "y": 233
+      "y": 233,
+      "junction": "stair-approach"
     },
     {
       "id": "l2-n040",
@@ -690,7 +692,8 @@
       "id": "l2-n043",
       "floor": 2,
       "x": 856,
-      "y": 319
+      "y": 319,
+      "junction": "stair-approach"
     },
     {
       "id": "l2-n044",
@@ -736,7 +739,8 @@
       "id": "l3-n001",
       "floor": 3,
       "x": 126,
-      "y": 445
+      "y": 445,
+      "junction": "stair-approach"
     },
     {
       "id": "l3-n002",
@@ -856,7 +860,8 @@
       "id": "l3-n020",
       "floor": 3,
       "x": 555,
-      "y": 288
+      "y": 288,
+      "junction": "stair-approach"
     },
     {
       "id": "l3-n021",
@@ -899,13 +904,6 @@
       "junction": "bend"
     },
     {
-      "id": "l3-n029",
-      "floor": 3,
-      "x": 620,
-      "y": 562,
-      "junction": "branch"
-    },
-    {
       "id": "l3-n030",
       "floor": 3,
       "x": 530,
@@ -928,7 +926,7 @@
       "floor": 3,
       "x": 631,
       "y": 555,
-      "junction": "bend"
+      "junction": "branch"
     },
     {
       "id": "l3-n034",
@@ -1001,7 +999,8 @@
       "id": "l3-n044",
       "floor": 3,
       "x": 1169,
-      "y": 208
+      "y": 208,
+      "junction": "stair-approach"
     },
     {
       "id": "l3-n045",
@@ -1453,6 +1452,14 @@
       "status": "inferred"
     },
     {
+      "id": "l1-stairs-atrium-approach-02",
+      "source": "l1-atrium-exit-junction",
+      "target": "l1-stairs-atrium",
+      "kind": "walk",
+      "lengthPx": 47.468,
+      "cost": 47.468
+    },
+    {
       "id": "l1-stairs-1100-south-approach-01",
       "source": "l1-n176",
       "target": "l1-stairs-1100-south",
@@ -1477,33 +1484,6 @@
       "kind": "walk",
       "lengthPx": 37.0,
       "cost": 37.0,
-      "status": "inferred"
-    },
-    {
-      "id": "l1-elevator-1200-approach-01",
-      "source": "l1-n110",
-      "target": "l1-elevator-1200",
-      "kind": "walk",
-      "lengthPx": 53.535,
-      "cost": 53.535,
-      "status": "inferred"
-    },
-    {
-      "id": "l1-elevator-1100-south-approach-01",
-      "source": "l1-atrium-exit-junction",
-      "target": "l1-elevator-1100-south",
-      "kind": "walk",
-      "lengthPx": 39.373,
-      "cost": 39.373,
-      "status": "inferred"
-    },
-    {
-      "id": "l1-elevator-1400-approach-01",
-      "source": "l1-classroom-south-landing-approach",
-      "target": "l1-elevator-1400",
-      "kind": "walk",
-      "lengthPx": 74.887,
-      "cost": 74.887,
       "status": "inferred"
     },
     {
@@ -1725,10 +1705,10 @@
     {
       "id": "l2-2100-west-05",
       "source": "l2-n027",
-      "target": "l2-n028",
+      "target": "l2-n032",
       "kind": "walk",
-      "lengthPx": 66.189,
-      "cost": 58.246
+      "lengthPx": 81.437,
+      "cost": 71.665
     },
     {
       "id": "l2-2100-middle-01",
@@ -1763,20 +1743,12 @@
       "cost": 39.088
     },
     {
-      "id": "l2-2100-middle-05",
-      "source": "l2-n032",
-      "target": "l2-n028",
-      "kind": "walk",
-      "lengthPx": 15.524,
-      "cost": 13.661
-    },
-    {
       "id": "l2-2100-south-01",
-      "source": "l2-n028",
+      "source": "l2-n032",
       "target": "l2-n033",
       "kind": "walk",
-      "lengthPx": 68.308,
-      "cost": 60.111
+      "lengthPx": 52.811,
+      "cost": 46.474
     },
     {
       "id": "l2-2100-south-02",
@@ -1873,33 +1845,6 @@
       "kind": "walk",
       "lengthPx": 14.422,
       "cost": 12.692,
-      "status": "inferred"
-    },
-    {
-      "id": "l2-elevator-blue-approach-01",
-      "source": "l2-n020",
-      "target": "l2-n046",
-      "kind": "walk",
-      "lengthPx": 37.577,
-      "cost": 33.067,
-      "status": "inferred"
-    },
-    {
-      "id": "l2-elevator-south-approach-01",
-      "source": "l2-n033",
-      "target": "l2-n047",
-      "kind": "walk",
-      "lengthPx": 57.706,
-      "cost": 50.781,
-      "status": "inferred"
-    },
-    {
-      "id": "l2-elevator-classroom-approach-01",
-      "source": "l2-n042",
-      "target": "l2-n048",
-      "kind": "walk",
-      "lengthPx": 62.073,
-      "cost": 54.624,
       "status": "inferred"
     },
     {
@@ -2113,10 +2058,10 @@
     {
       "id": "l3-3100-west-05",
       "source": "l3-n028",
-      "target": "l3-n029",
+      "target": "l3-n033",
       "kind": "walk",
-      "lengthPx": 74.095,
-      "cost": 65.203
+      "lengthPx": 87.132,
+      "cost": 76.676
     },
     {
       "id": "l3-3100-middle-01",
@@ -2151,20 +2096,12 @@
       "cost": 36.123
     },
     {
-      "id": "l3-3100-middle-05",
-      "source": "l3-n033",
-      "target": "l3-n029",
-      "kind": "walk",
-      "lengthPx": 13.038,
-      "cost": 11.474
-    },
-    {
       "id": "l3-3100-south-01",
-      "source": "l3-n029",
+      "source": "l3-n033",
       "target": "l3-n034",
       "kind": "walk",
-      "lengthPx": 56.462,
-      "cost": 49.687
+      "lengthPx": 43.658,
+      "cost": 38.419
     },
     {
       "id": "l3-3100-south-02",
@@ -2205,14 +2142,6 @@
       "kind": "walk",
       "lengthPx": 62.29,
       "cost": 54.815
-    },
-    {
-      "id": "l3-3400-west-04",
-      "source": "l3-n039",
-      "target": "l3-n040",
-      "kind": "walk",
-      "lengthPx": 48.415,
-      "cost": 42.605
     },
     {
       "id": "l3-3400-east-01",
@@ -2285,24 +2214,6 @@
       "kind": "walk",
       "lengthPx": 12.042,
       "cost": 10.597,
-      "status": "inferred"
-    },
-    {
-      "id": "l3-elevator-blue-approach-01",
-      "source": "l3-n021",
-      "target": "l3-n049",
-      "kind": "walk",
-      "lengthPx": 40.497,
-      "cost": 35.637,
-      "status": "inferred"
-    },
-    {
-      "id": "l3-elevator-south-approach-01",
-      "source": "l3-n034",
-      "target": "l3-n050",
-      "kind": "walk",
-      "lengthPx": 38.833,
-      "cost": 34.173,
       "status": "inferred"
     },
     {
@@ -2606,6 +2517,14 @@
       "status": "inferred"
     },
     {
+      "id": "l1-stairs-atrium-junction-approach",
+      "floor": 1,
+      "nodeIds": [
+        "l1-atrium-exit-junction",
+        "l1-stairs-atrium"
+      ]
+    },
+    {
       "id": "l1-stairs-1100-south-approach",
       "floor": 1,
       "nodeIds": [
@@ -2629,33 +2548,6 @@
       "nodeIds": [
         "l1-classroom-south-landing-approach",
         "l1-stairs-1400-west"
-      ],
-      "status": "inferred"
-    },
-    {
-      "id": "l1-elevator-1200-approach",
-      "floor": 1,
-      "nodeIds": [
-        "l1-n110",
-        "l1-elevator-1200"
-      ],
-      "status": "inferred"
-    },
-    {
-      "id": "l1-elevator-1100-south-approach",
-      "floor": 1,
-      "nodeIds": [
-        "l1-atrium-exit-junction",
-        "l1-elevator-1100-south"
-      ],
-      "status": "inferred"
-    },
-    {
-      "id": "l1-elevator-1400-approach",
-      "floor": 1,
-      "nodeIds": [
-        "l1-classroom-south-landing-approach",
-        "l1-elevator-1400"
       ],
       "status": "inferred"
     },
@@ -2719,7 +2611,7 @@
         "l2-n025",
         "l2-n026",
         "l2-n027",
-        "l2-n028"
+        "l2-n032"
       ]
     },
     {
@@ -2730,15 +2622,14 @@
         "l2-n029",
         "l2-n030",
         "l2-n031",
-        "l2-n032",
-        "l2-n028"
+        "l2-n032"
       ]
     },
     {
       "id": "l2-2100-south",
       "floor": 2,
       "nodeIds": [
-        "l2-n028",
+        "l2-n032",
         "l2-n033",
         "l2-n034",
         "l2-n035"
@@ -2773,33 +2664,6 @@
       "nodeIds": [
         "l2-n001",
         "l2-n045"
-      ],
-      "status": "inferred"
-    },
-    {
-      "id": "l2-elevator-blue-approach",
-      "floor": 2,
-      "nodeIds": [
-        "l2-n020",
-        "l2-n046"
-      ],
-      "status": "inferred"
-    },
-    {
-      "id": "l2-elevator-south-approach",
-      "floor": 2,
-      "nodeIds": [
-        "l2-n033",
-        "l2-n047"
-      ],
-      "status": "inferred"
-    },
-    {
-      "id": "l2-elevator-classroom-approach",
-      "floor": 2,
-      "nodeIds": [
-        "l2-n042",
-        "l2-n048"
       ],
       "status": "inferred"
     },
@@ -2862,7 +2726,7 @@
         "l3-n026",
         "l3-n027",
         "l3-n028",
-        "l3-n029"
+        "l3-n033"
       ]
     },
     {
@@ -2873,15 +2737,14 @@
         "l3-n030",
         "l3-n031",
         "l3-n032",
-        "l3-n033",
-        "l3-n029"
+        "l3-n033"
       ]
     },
     {
       "id": "l3-3100-south",
       "floor": 3,
       "nodeIds": [
-        "l3-n029",
+        "l3-n033",
         "l3-n034",
         "l3-n035",
         "l3-n036"
@@ -2894,8 +2757,7 @@
         "l3-n011",
         "l3-n037",
         "l3-n038",
-        "l3-n039",
-        "l3-n040"
+        "l3-n039"
       ]
     },
     {
@@ -2933,24 +2795,6 @@
       "nodeIds": [
         "l3-n001",
         "l3-n048"
-      ],
-      "status": "inferred"
-    },
-    {
-      "id": "l3-elevator-blue-approach",
-      "floor": 3,
-      "nodeIds": [
-        "l3-n021",
-        "l3-n049"
-      ],
-      "status": "inferred"
-    },
-    {
-      "id": "l3-elevator-south-approach",
-      "floor": 3,
-      "nodeIds": [
-        "l3-n034",
-        "l3-n050"
       ],
       "status": "inferred"
     }
@@ -3009,6 +2853,7 @@
     "The central stairs follow the user-provided Level 1\u20132\u20133 sequence. The Level 3 landing is beside the 3200s elevator; its exact schematic position is approximate.",
     "Other vertical pairings and marked corridor approaches are inferred from the directories. The west classroom stair is paired only between Levels 1 and 2, where the symbol is visible.",
     "Routing cost is in approximate schematic units, including placeholder inter-floor costs. Use cost for cross-floor routing.",
-    "The Level 2 Binary Bridge marking is not an exit in this model. The Level 3 bridge is the only upper-floor exit."
+    "The Level 2 Binary Bridge marking is not an exit in this model. The Level 3 bridge is the only upper-floor exit.",
+    "Elevator nodes and vertical elevator edges are retained as a separate network. The demo has no walk connections to elevators."
   ]
 }

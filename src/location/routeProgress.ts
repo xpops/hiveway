@@ -1,7 +1,5 @@
 import { createFloorDistance } from '../location/coordinates';
-import { floors, type Point, type Route } from '../routing/routing';
-
-type RoutePoint = Point & { floor: number };
+import { floors, type Route, type RoutePoint } from '../routing/routing';
 export type RouteProgress = { index: number; fraction: number };
 export const routeStart: RouteProgress = { index: 0, fraction: 0 };
 
@@ -50,6 +48,33 @@ export function remainingRoutePoints(route: Route, progress: RouteProgress): Rou
   return points;
 }
 
+function stairTransition(points: RoutePoint[], index: number) {
+  const from = points[index];
+  let arrivalIndex = index + 1;
+  let to = points[arrivalIndex];
+  const direction = Math.sign(to.floor - from.floor);
+  while (from.kind === 'stairs' && from.connectorId && to.kind === 'stairs' &&
+    to.connectorId === from.connectorId) {
+    const next = points[arrivalIndex + 1];
+    if (next?.kind !== 'stairs' || next.connectorId !== from.connectorId ||
+      Math.sign(next.floor - to.floor) !== direction) break;
+    to = next;
+    arrivalIndex++;
+  }
+  return { index, arrivalIndex, from, to };
+}
+
+export function routeStairTransitions(points: RoutePoint[]) {
+  const transitions = [];
+  for (let index = 0; index < points.length - 1; index++) {
+    if (points[index].floor === points[index + 1].floor) continue;
+    const transition = stairTransition(points, index);
+    transitions.push(transition);
+    index = transition.arrivalIndex - 1;
+  }
+  return transitions;
+}
+
 export function nearbyStair(route: Route, progress: RouteProgress) {
   const points = route.points;
   const current = points[progress.index];
@@ -58,7 +83,7 @@ export function nearbyStair(route: Route, progress: RouteProgress) {
   for (let index = progress.index; index < points.length - 1; index++) {
     const from = points[index];
     const to = points[index + 1];
-    if (from.floor !== to.floor) return { index, from, to };
+    if (from.floor !== to.floor) return stairTransition(points, index);
     const fractionLeft = index === progress.index ? 1 - progress.fraction : 1;
     meters += distance(from, to) * fractionLeft;
     if (meters > STAIR_PROMPT_DISTANCE_METERS) return null;

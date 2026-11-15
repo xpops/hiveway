@@ -1,11 +1,12 @@
 import data from '../data/klaus/klaus-graph.json';
 
 export type Point = { x: number; y: number };
-export type Waypoint = Point & { id: string; floor: number; kind?: string; junction?: string };
+export type Waypoint = Point & { id: string; floor: number; kind?: string; junction?: string; connectorId?: string };
 type Edge = (typeof data.edges)[number];
 type Segment = { edgeId: string; start: Waypoint; end: Waypoint; cost: number };
 export type Snap = Point & { floor: number; segment: Segment; fraction: number; distancePx: number };
-export type Route = { exit: Waypoint; cost: number; points: (Point & { floor: number })[]; edgeIds: string[] };
+export type RoutePoint = Point & { floor: number; kind?: string; connectorId?: string };
+export type Route = { exit: Waypoint; cost: number; points: RoutePoint[]; edgeIds: string[] };
 
 export const floors = data.floors;
 export const exitLabels = new Map(data.landmarks.filter(item => item.kind === 'exit').map(item => [item.nodeId, item.label]));

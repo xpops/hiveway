@@ -11,7 +11,7 @@ for (const edge of edges.values()) {
 }
 
 const ignitionCandidates = [...fireNeighbors.keys()].filter(id => !nodes.get(id)?.kind);
-export const spreadIntervalMs = 5000;
+export const spreadIntervalMs = 20000;
 
 export type FireSimulation = {
   ignition: string;

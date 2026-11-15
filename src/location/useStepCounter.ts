@@ -4,7 +4,7 @@ import type { Snap } from '../routing/routing';
 import { classifyGait, STEP_LENGTH_METERS, type Gait } from './gait';
 import { updateSensorTrack, type SensorTrack } from './demoSensorPosition';
 
-type MotionApi = typeof DeviceMotionEvent & { requestPermission?: () => Promise<PermissionState> };
+export type MotionApi = typeof DeviceMotionEvent & { requestPermission?: () => Promise<PermissionState> };
 
 function readVector(vector: DeviceMotionEventAcceleration | null) {
   const x = vector?.x, y = vector?.y, z = vector?.z;
@@ -14,7 +14,7 @@ function readVector(vector: DeviceMotionEventAcceleration | null) {
 
 export function useStepCounter(readHeading: () => number | null, onPosition: (snap: Snap) => void) {
   const [active, setActive] = useState(false);
-  const [pending, setPending] = useState(false);
+  const [ready, setReady] = useState(false);
   const [status, setStatus] = useState('');
   const [steps, setSteps] = useState(0);
   const [gait, setGait] = useState<Gait | 'Still'>('Still');
@@ -22,7 +22,7 @@ export function useStepCounter(readHeading: () => number | null, onPosition: (sn
   const track = useRef<SensorTrack | null>(null);
   const callbacks = useRef({ readHeading, onPosition });
   useEffect(() => { callbacks.current = { readHeading, onPosition }; }, [readHeading, onPosition]);
-  const permissionRequest = useRef(0);
+  const permission = useRef<'idle' | 'pending' | 'granted'>('idle');
 
   useEffect(() => {
     if (!active) return;
@@ -102,41 +102,42 @@ export function useStepCounter(readHeading: () => number | null, onPosition: (sn
     track.current = { snap, hop: null, heading: null };
   }
 
-  async function start(snap: Snap, onStarted: () => void) {
+  async function prepare() {
+    if (permission.current !== 'idle') return;
     const motion = window.DeviceMotionEvent as MotionApi | undefined;
     if (!motion) {
       setStatus('Motion sensing is unavailable on this device.');
       return;
     }
-    const request = ++permissionRequest.current;
-    setPending(true);
+    permission.current = 'pending';
     try {
-      const permission = motion.requestPermission ? await motion.requestPermission() : 'granted';
-      if (request !== permissionRequest.current) return;
-      if (permission !== 'granted') {
+      if (motion.requestPermission && await motion.requestPermission() !== 'granted') {
         setStatus('Motion permission was not granted.');
+        permission.current = 'idle';
         return;
       }
-      anchor(snap);
-      setSteps(0);
-      setActive(true);
-      onStarted();
+      permission.current = 'granted';
+      setReady(true);
+      setStatus('');
     } catch {
-      if (request === permissionRequest.current) setStatus('Could not enable motion sensing.');
-    } finally {
-      if (request === permissionRequest.current) setPending(false);
+      permission.current = 'idle';
+      setStatus('Could not enable motion sensing.');
     }
   }
 
+  function start(snap: Snap) {
+    anchor(snap);
+    setSteps(0);
+    setActive(true);
+  }
+
   function stop() {
-    permissionRequest.current++;
     setActive(false);
-    setPending(false);
     setStatus('');
     setGait('Still');
     setSpeed(0);
     track.current = null;
   }
 
-  return { active, pending, status, steps, gait, speed, start, stop, anchor };
+  return { active, ready, status, steps, gait, speed, prepare, start, stop, anchor };
 }

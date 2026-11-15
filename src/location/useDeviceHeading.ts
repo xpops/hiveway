@@ -2,13 +2,14 @@ import { useEffect, useRef, useState } from 'react';
 import { angleDifference, normalizeHeading } from './coordinates';
 
 type CompassEvent = DeviceOrientationEvent & { webkitCompassHeading?: number; webkitCompassAccuracy?: number };
-type OrientationApi = typeof DeviceOrientationEvent & { requestPermission?: (absolute?: boolean) => Promise<PermissionState> };
+export type OrientationApi = typeof DeviceOrientationEvent & { requestPermission?: (absolute?: boolean) => Promise<PermissionState> };
 type HeadingSample = { degrees: number; timestamp: number; accuracy?: number };
 
 export function useDeviceHeading() {
   const [enabled, setEnabled] = useState(false);
   const [heading, setHeading] = useState<number | null>(null);
   const [headingStatus, setHeadingStatus] = useState('');
+  const requesting = useRef(false);
   const latest = useRef<HeadingSample | null>(null);
 
   useEffect(() => {
@@ -47,11 +48,13 @@ export function useDeviceHeading() {
   }, [enabled]);
 
   async function enableHeading() {
+    if (enabled || requesting.current) return;
     const orientation = window.DeviceOrientationEvent as OrientationApi | undefined;
     if (!orientation) {
       setHeadingStatus('Compass is unavailable on this device.');
       return;
     }
+    requesting.current = true;
     try {
       if (orientation.requestPermission && await orientation.requestPermission(true) !== 'granted') {
         setHeadingStatus('Compass permission was not granted.');
@@ -61,6 +64,8 @@ export function useDeviceHeading() {
       setEnabled(true);
     } catch {
       setHeadingStatus('Could not enable the compass.');
+    } finally {
+      requesting.current = false;
     }
   }
 
