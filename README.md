@@ -90,3 +90,9 @@ Open the Local URL printed by Vite. Select **Navigate** and choose your current 
 - Pick the calibration landmarks and check location accuracy on the phone we will use for the demo.
 - Confirm map taps as the backup for weak fixes or denied location permission.
 - Decide whether offline reopening on phones belongs in the demo or follows the browser routing milestone.
+
+### Sensor navigation demo
+
+Select **Navigate** and set a starting position. Enable the compass, then select **Start sensor navigation** and allow motion access on an HTTPS address. Keep the phone aimed in your direction of travel. Sensor Zoo counts steps. Recent cadence and acceleration intensity select a fixed step length of 0.72 m for walking or 1.00 m for running.
+
+A heading change of at least 55° snaps to the closer end of the current corridor and selects the outgoing corridor closest to the new heading. Walking continues on the next step when a connected corridor forms an angle of less than 120° with the phone direction. If none does, the marker waits at the junction. The combined graph marks junctions as `branch` for three or more walk neighbors or `bend` for two walk neighbors with a turn of at least 55°. Stair and elevator nodes and connections to them are excluded from junction classification. The Position panel shows the estimated gait and speed. **Resume GPS** switches back to device location.

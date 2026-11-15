@@ -115,6 +115,11 @@ export function useStartLocation(readHeading: () => number | null) {
   return {
     locating,
     gpsLog,
+    stopLocation: () => {
+      clearLocationWatch();
+      setLocating(false);
+      setLocationStatus('');
+    },
     locationStatus,
     requestLocation,
     clearLocationStatus: () => setLocationStatus(''),

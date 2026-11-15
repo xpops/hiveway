@@ -1,7 +1,7 @@
 import data from '../data/klaus/klaus-graph.json';
 
 export type Point = { x: number; y: number };
-export type Waypoint = Point & { id: string; floor: number; kind?: string };
+export type Waypoint = Point & { id: string; floor: number; kind?: string; junction?: string };
 type Edge = (typeof data.edges)[number];
 type Segment = { edgeId: string; start: Waypoint; end: Waypoint; cost: number };
 export type Snap = Point & { floor: number; segment: Segment; fraction: number; distancePx: number };

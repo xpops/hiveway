@@ -5,6 +5,7 @@ import { FloorMap } from './components/FloorMap';
 import { FloorPickerDialog } from './components/FloorPickerDialog';
 import { StairArrivalDialog } from './components/StairArrivalDialog';
 import { advanceProgress, nearbyStair, remainingRoutePoints, routeStart, type RouteProgress } from './location/routeProgress';
+import { useStepCounter } from './location/useStepCounter';
 import { useStartLocation } from './location/useStartLocation';
 import { exitLabels, findClosestCorridor, floors, type Point, type Route, type Snap } from './routing/routing';
 import { calculateEvacuation, type Scenario } from './simulation/evacuationEngine';
@@ -22,7 +23,11 @@ export function App() {
   const [livePosition, setLivePosition] = useState<Snap | null>(null);
   const [source, setSource] = useState('');
   const compass = useDeviceHeading();
-  const { locating, gpsLog, locationStatus, requestLocation, clearLocationStatus } = useStartLocation(compass.readTrustedHeading);
+  const { locating, gpsLog, locationStatus, requestLocation, clearLocationStatus, stopLocation } = useStartLocation(compass.readTrustedHeading);
+  const stepCounter = useStepCounter(compass.readNavigationHeading, snap => {
+    setLivePosition(snap);
+    setSource('Sensor navigation');
+  });
   const [scenario, setScenario] = useState<Scenario>('open');
   const [manuallyClosed, setManuallyClosed] = useState<Set<string>>(new Set());
   const [editClosure, setEditClosure] = useState(false);
@@ -47,6 +52,7 @@ export function App() {
     .map(point => point.floor);
 
   function placeStart(snap: Snap, label: string) {
+    if (stepCounter.active) stepCounter.anchor(snap);
     setStart(snap);
     setLivePosition(null);
     setStartFloor(snap.floor);
@@ -56,6 +62,7 @@ export function App() {
   }
 
   function locate(selectedFloor: number) {
+    stepCounter.stop();
     setStart(null);
     setLivePosition(null);
     setStartFloor(selectedFloor);
@@ -80,7 +87,26 @@ export function App() {
     setStartFloor(floor);
     setActiveFloor(floor);
     setSource('Confirmed stair landing');
-    requestLocation(floor, receivePosition, landing);
+    if (stepCounter.active) stepCounter.anchor(landing);
+    else requestLocation(floor, receivePosition, landing);
+  }
+
+  function startSensorNavigation() {
+    const anchor = livePosition ?? start;
+    if (!anchor) return;
+    void stepCounter.start(anchor, () => {
+      stopLocation();
+      setLivePosition(anchor);
+      setSource('Sensor navigation');
+    });
+  }
+
+  function resumeGps() {
+    stepCounter.stop();
+    if (startFloor !== null) {
+      setSource('Requesting device location');
+      requestLocation(startFloor, receivePosition);
+    }
   }
 
   function rebaseRoute() {
@@ -169,6 +195,23 @@ export function App() {
               {start && scenario === 'closure' && !detourClosure && <p role="status">No alternate route from this starting point. Try another start or edit closures on the map.</p>}
               <button className="secondary edit" aria-pressed={editClosure} onClick={() => setEditClosure(!editClosure)}>{editClosure ? 'Done editing closures' : 'Edit closures on map'}</button>
               {manuallyClosed.size > 0 && <button className="plain" onClick={() => { rebaseRoute(); setManuallyClosed(new Set()); }}>Clear custom closures</button>}
+            </section>
+            <section className="panel">
+              <h2>Sensor navigation</h2>
+              {stepCounter.active ? (
+                <>
+                  <p>{stepCounter.gait} · {stepCounter.steps} steps · {stepCounter.speed.toFixed(2)} m/s estimated</p>
+                  <button type="button" className="secondary compass-button" onClick={resumeGps}>Resume GPS</button>
+                </>
+              ) : (
+                <>
+                  {(!start || compass.heading === null) && <p>Set your starting position and enable the compass.</p>}
+                  <button type="button" className="secondary compass-button"
+                    disabled={!start || compass.heading === null || stepCounter.pending}
+                    onClick={startSensorNavigation}>Start sensor navigation</button>
+                </>
+              )}
+              {stepCounter.status && <p role="status">{stepCounter.status}</p>}
             </section>
             <GpsDiagnostics entries={gpsLog} />
           </aside>

@@ -8,7 +8,11 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview"
   },
-  "dependencies": { "react": "19.2.8", "react-dom": "19.2.8" },
+  "dependencies": {
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "sensor-zoo": "https://codeload.github.com/tszheichoi/sensor-zoo/tar.gz/7d16c6d3ad62ecb0d750b1ae7affca97800a3339"
+  },
   "devDependencies": {
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",

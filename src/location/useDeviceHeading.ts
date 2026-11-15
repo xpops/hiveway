@@ -70,5 +70,11 @@ export function useDeviceHeading() {
       sample.accuracy <= 25 && Date.now() - sample.timestamp <= 1500 ? sample.degrees : null;
   }
 
-  return { heading, headingStatus: heading === null ? headingStatus : '', enabled, enableHeading, readTrustedHeading };
+  function readNavigationHeading() {
+    const sample = latest.current;
+    return sample && (sample.accuracy === undefined || (sample.accuracy >= 0 && sample.accuracy <= 45)) &&
+      Date.now() - sample.timestamp <= 1500 ? sample.degrees : null;
+  }
+
+  return { readNavigationHeading, heading, headingStatus: heading === null ? headingStatus : '', enabled, enableHeading, readTrustedHeading };
 }
