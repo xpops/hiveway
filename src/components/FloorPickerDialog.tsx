@@ -24,7 +24,9 @@ export function FloorPickerDialog({ floors, locating, onSelect }: Props) {
             <button key={floor} className="secondary" onClick={() => selectFloor(floor)}>Level {floor}</button>
           ))}
         </div>
-        <form method="dialog"><button className="plain">Cancel</button></form>
+        <form method="dialog" className="floor-dialog-actions">
+          <button className="floor-dialog-cancel">Cancel</button>
+        </form>
       </dialog>
     </>
   );

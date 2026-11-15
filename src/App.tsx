@@ -1,5 +1,5 @@
 import { useDeviceHeading } from './location/useDeviceHeading';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useEffectEvent, useMemo, useState } from 'react';
 import { GpsDiagnostics } from './components/GpsDiagnostics';
 import { FloorMap } from './components/FloorMap';
 import { FloorPickerDialog } from './components/FloorPickerDialog';
@@ -7,8 +7,9 @@ import { StairArrivalDialog } from './components/StairArrivalDialog';
 import { advanceProgress, nearbyStair, remainingRoutePoints, routeStart, type RouteProgress } from './location/routeProgress';
 import { useStepCounter } from './location/useStepCounter';
 import { useStartLocation } from './location/useStartLocation';
-import { exitLabels, findClosestCorridor, floors, type Point, type Route, type Snap } from './routing/routing';
+import { exitLabels, findClosestCorridor, floors, nodes, type Point, type Route, type Snap } from './routing/routing';
 import { calculateEvacuation, type Scenario } from './simulation/evacuationEngine';
+import { spreadFire, spreadIntervalMs, startFire, type FireSimulation } from './simulation/fireSimulation';
 
 const scenarios: { id: Scenario; name: string; detail: string }[] = [
   { id: 'open', name: 'Clear corridors', detail: 'Compare the route before a closure.' },
@@ -28,13 +29,28 @@ export function App() {
     setLivePosition(snap);
     setSource('Sensor navigation');
   });
+  const [simulation, setSimulation] = useState<FireSimulation | null>(null);
   const [scenario, setScenario] = useState<Scenario>('open');
   const [manuallyClosed, setManuallyClosed] = useState<Set<string>>(new Set());
   const [editClosure, setEditClosure] = useState(false);
   const floor = floors.find(item => item.floor === activeFloor)!;
+  const burning = simulation?.burning;
+  const spreading = Boolean(simulation?.frontier.size);
+  const ignition = simulation ? nodes.get(simulation.ignition) : undefined;
+  const spreadNow = useEffectEvent(() => {
+    if (!simulation?.frontier.size) return;
+    const next = spreadFire(simulation);
+    if (next.burning !== burning && livePosition) setStart(livePosition);
+    setSimulation(next);
+  });
+  useEffect(() => {
+    if (!spreading) return;
+    const timer = window.setInterval(() => spreadNow(), spreadIntervalMs);
+    return () => window.clearInterval(timer);
+  }, [spreading]);
   const { route, closedEdges, detourClosure } = useMemo(
-    () => calculateEvacuation(start, scenario, manuallyClosed),
-    [start, scenario, manuallyClosed],
+    () => calculateEvacuation(start, scenario, manuallyClosed, burning),
+    [start, scenario, manuallyClosed, burning],
   );
   const [tracked, setTracked] = useState<{ route: Route; progress: RouteProgress } | null>(null);
   const progress = tracked?.route === route ? tracked.progress : routeStart;
@@ -63,6 +79,7 @@ export function App() {
 
   function locate(selectedFloor: number) {
     stepCounter.stop();
+    setSimulation(null);
     setStart(null);
     setLivePosition(null);
     setStartFloor(selectedFloor);
@@ -147,7 +164,13 @@ export function App() {
       <main>
         <div className="title-row">
           <div><p className="eyebrow">GEORGIA TECH · KLAUS</p><h1>Evacuation routes</h1><p className="subtitle">Explore how corridor closures change the route through Klaus.</p></div>
-          <FloorPickerDialog floors={floors} locating={locating} onSelect={locate} />
+          <div className="title-actions">
+            <FloorPickerDialog floors={floors} locating={locating} onSelect={locate} />
+            <button className="navigate simulation-button" disabled={!start} onClick={() => {
+              rebaseRoute();
+              setSimulation(simulation ? null : startFire());
+            }}>{simulation ? 'Reset simulation' : 'Fire simulation'}</button>
+          </div>
         </div>
         <div className="layout">
           <section className="map-card" aria-labelledby="map-heading">
@@ -159,10 +182,10 @@ export function App() {
             </div>
             <div className="map-stage">
               <span className="stage-label">LEVEL {activeFloor}</span>
-              <FloorMap floor={floor} points={remainingPoints} exit={route?.exit} position={livePosition ?? start} heading={compass.heading} closedEdges={closedEdges} onPick={pickPoint} />
+              <FloorMap floor={floor} points={remainingPoints} exit={route?.exit} position={livePosition ?? start} heading={compass.heading} closedEdges={closedEdges} simulation={simulation} onPick={pickPoint} />
             </div>
             <div className="map-footer">
-              <ul className="legend"><li><i className="here" />Position</li><li><i className="route" />Route</li><li><i className="blocked" />Closure</li><li><i className="exit" />Exit</li></ul>
+              <ul className="legend"><li><i className="here" />Position</li><li><i className="route" />Route</li><li><i className="blocked" />Closure</li><li><i className="exit" />Exit</li>{simulation && <li><i className="fire" />Fire</li>}</ul>
               <span>{editClosure ? 'Tap a corridor to toggle a closure' : startFloor === null ? 'Select Navigate to start' : activeFloor === startFloor ? 'Tap a corridor to set or correct your start' : 'View your current floor to adjust your start'}</span>
             </div>
           </section>
@@ -213,6 +236,18 @@ export function App() {
               )}
               {stepCounter.status && <p role="status">{stepCounter.status}</p>}
             </section>
+            {simulation && ignition && (
+              <section className="panel" aria-labelledby="fire-details-heading">
+                <h2 id="fire-details-heading">Fire spread</h2>
+                <p>Started on Level {ignition.floor} · Node {ignition.id}</p>
+                <div role="status">
+                  <p>{simulation.elapsedSeconds}s elapsed · {simulation.burning.size} burning</p>
+                  <p>{simulation.elapsedSeconds === 0 ? 'Fire started' : spreading
+                    ? `+${simulation.frontier.size} reached in the last ${spreadIntervalMs / 1000}s`
+                    : 'Spread complete'}</p>
+                </div>
+              </section>
+            )}
             <GpsDiagnostics entries={gpsLog} />
           </aside>
         </div>

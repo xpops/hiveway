@@ -2,13 +2,22 @@ import { edges, exitLabels, findNearestExit, type Snap } from '../routing/routin
 
 export type Scenario = 'open' | 'closure' | 'unreachable';
 
-export function calculateEvacuation(start: Snap | null, scenario: Scenario, manuallyClosed: ReadonlySet<string>) {
+export function calculateEvacuation(
+  start: Snap | null, scenario: Scenario, manuallyClosed: ReadonlySet<string>,
+  burning: ReadonlySet<string> = new Set(),
+) {
   const detourClosure = start && scenario === 'closure' ? findDetourClosure(start) : undefined;
   const closedEdges = new Set(manuallyClosed);
   if (detourClosure) closedEdges.add(detourClosure);
 
-  const closedExits = scenario === 'unreachable' ? new Set(exitLabels.keys()) : new Set<string>();
-  const route = start ? findNearestExit(start, closedEdges, closedExits) : null;
+  const routeBlockedEdges = new Set(closedEdges);
+  if (burning.size) {
+    for (const edge of edges.values()) {
+      if (burning.has(edge.source) || burning.has(edge.target)) routeBlockedEdges.add(edge.id);
+    }
+  }
+  const blockedNodes = scenario === 'unreachable' ? new Set([...burning, ...exitLabels.keys()]) : burning;
+  const route = start ? findNearestExit(start, routeBlockedEdges, blockedNodes) : null;
 
   return { route, closedEdges, detourClosure };
 }

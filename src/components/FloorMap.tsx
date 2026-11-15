@@ -1,6 +1,7 @@
 import type { MouseEvent } from 'react';
 import { toFloorHeading } from '../location/coordinates';
-import { edges, floors, nodes, type Point, type Route, type Snap } from '../routing/routing';
+import { edges, floors, nodes, segmentsByFloor, type Point, type Route, type Snap } from '../routing/routing';
+import type { FireSimulation } from '../simulation/fireSimulation';
 
 type Props = {
   floor: (typeof floors)[number];
@@ -9,10 +10,11 @@ type Props = {
   position: Snap | null;
   heading: number | null;
   closedEdges: ReadonlySet<string>;
+  simulation: FireSimulation | null;
   onPick: (point: Point) => void;
 };
 
-export function FloorMap({ floor, points, exit, position, heading, closedEdges, onPick }: Props) {
+export function FloorMap({ floor, points, exit, position, heading, closedEdges, simulation, onPick }: Props) {
   const { width, height } = floor.coordinateSpace;
   const path = points.map((point, index) => {
     if (point.floor !== floor.floor) return '';
@@ -35,6 +37,13 @@ export function FloorMap({ floor, points, exit, position, heading, closedEdges, 
     <svg className="floor-map" viewBox={`0 0 ${width} ${height}`} onClick={selectPoint}
       role="img" aria-label={`Klaus level ${floor.floor} map. Tap a corridor to set your start.`}>
       <image href={`${import.meta.env.BASE_URL}${floor.mapUrl.slice(1)}`} width={width} height={height} />
+      <g className="fire-spread">
+        {simulation && (segmentsByFloor.get(floor.floor) ?? []).map(({ edgeId, start, end }) =>
+          simulation.burning.has(start.id) && simulation.burning.has(end.id) && (
+            <line key={edgeId} className="fire-segment" x1={start.x} y1={start.y} x2={end.x} y2={end.y} />
+          ),
+        )}
+      </g>
       <path className="route-halo" d={path} />
       <path className="route-line" d={path} />
       {[...closedEdges].map(id => {
@@ -53,6 +62,11 @@ export function FloorMap({ floor, points, exit, position, heading, closedEdges, 
         </g>
       ))}
       {exit?.floor === floor.floor && <circle className="exit-marker" cx={exit.x} cy={exit.y} r="11" />}
+      {simulation && [...simulation.burning].map(id => {
+        const node = nodes.get(id);
+        if (node?.floor !== floor.floor) return null;
+        return <circle key={id} className="fire-marker" cx={node.x} cy={node.y} r={id === simulation.ignition ? 9 : 6} />;
+      })}
       {position?.floor === floor.floor && (
         <g>
           {heading !== null && (

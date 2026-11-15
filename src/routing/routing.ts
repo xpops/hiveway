@@ -49,15 +49,18 @@ export function projectOntoCorridor(point: Point, segment: Segment): Snap | null
 
 export function findNearestExit(
   snap: Snap,
-  closedEdges: ReadonlySet<string>,
-  closedExits: ReadonlySet<string> = new Set(),
+  closedEdges: ReadonlySet<string> = new Set(),
+  blockedNodes: ReadonlySet<string> = new Set(),
 ): Route | null {
   const { segment, fraction } = snap;
   const distances = new Map<string, number>();
-  // TODO: A start inside a closed segment ignores that segment and run Dijkstra. A start at an
-  // endpoint can still use other open connections without crossing that segment.
-  if (!closedEdges.has(segment.edgeId) || fraction === 0) distances.set(segment.start.id, fraction * segment.cost);
-  if (!closedEdges.has(segment.edgeId) || fraction === 1) distances.set(segment.end.id, (1 - fraction) * segment.cost);
+  // A start at an open endpoint can use other connections without crossing a closed segment.
+  if (!blockedNodes.has(segment.start.id) && (!closedEdges.has(segment.edgeId) || fraction === 0)) {
+    distances.set(segment.start.id, fraction * segment.cost);
+  }
+  if (!blockedNodes.has(segment.end.id) && (!closedEdges.has(segment.edgeId) || fraction === 1)) {
+    distances.set(segment.end.id, (1 - fraction) * segment.cost);
+  }
 
   const predecessors = new Map<string, { nodeId: string; edgeId: string }>();
   const visited = new Set<string>();
@@ -72,7 +75,7 @@ export function findNearestExit(
     }
     if (current === undefined) return null;
     const waypoint = nodes.get(current)!;
-    if (waypoint.kind === 'exit' && !closedExits.has(current)) {
+    if (waypoint.kind === 'exit' && !blockedNodes.has(current)) {
       const points = [waypoint];
       const edgeIds: string[] = [];
       for (let previous = predecessors.get(current); previous; previous = predecessors.get(previous.nodeId)) {
@@ -84,7 +87,7 @@ export function findNearestExit(
     }
     visited.add(current);
     for (const { nodeId, edge } of neighbors.get(current)!) {
-      if (edge.kind === 'elevator' || closedEdges.has(edge.id) || closedExits.has(nodeId)) continue;
+      if (edge.kind === 'elevator' || closedEdges.has(edge.id) || blockedNodes.has(nodeId)) continue;
       const candidate = cost + edge.cost;
       if (candidate < (distances.get(nodeId) ?? Infinity)) {
         distances.set(nodeId, candidate);
